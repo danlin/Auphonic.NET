@@ -1,0 +1,7 @@
+﻿{
+	"status_code": 500,
+	"form_errors": {},
+	"error_code": null,
+	"error_message": "Request authentication failed, no authentication credentials provided.",
+	"data": null
+}

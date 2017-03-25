@@ -1,0 +1,22 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": {
+    "username": "testuser",
+    "user_id": "6ba197a14abb5eee55713fef66feaf71",
+    "date_joined": "2013-02-28T21:20:03Z",
+    "email": "grh@auphonic.com",
+    "credits": 2.87309201310154,
+    "onetime_credits": 1.0,
+    "recurring_credits": 1.87309201310154,
+    "recharge_date": "2014-05-28T21:20:03Z",
+    "recharge_recurring_credits": 2.0,
+    "notification_email": true,
+    "error_email": true,
+    "warning_email": true,
+    "low_credits_email": false,
+    "low_credits_threshold": 10
+  }
+}
