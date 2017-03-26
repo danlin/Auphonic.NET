@@ -13,6 +13,13 @@
 
 		AccountInfo,
 		AccountInfoInvalidToken,
-		AccountInfoNullToken
+		AccountInfoNullToken,
+
+		Algorithms,
+		FileEndings,
+		OutputFiles,
+		ProductionStatus,
+		ServiceTypes,
+		Info,
 	}
 }

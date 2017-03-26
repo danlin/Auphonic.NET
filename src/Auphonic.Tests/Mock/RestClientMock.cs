@@ -6,6 +6,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -72,6 +73,24 @@ namespace AuphonicNet.Tests.Mock
 			ClientMock.Setup(c => c.Execute<Response<Account>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.AccountInfo)))).Returns(() => GetAccountInfoResponse());
 			ClientMock.Setup(c => c.Execute<Response<Account>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.AccountInfoInvalidToken)))).Returns(() => GetInvalidTokenResponse<Account>());
 			ClientMock.Setup(c => c.Execute<Response<Account>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.AccountInfoNullToken)))).Returns(() => GetNullTokenResponse<Account>());
+
+			// Algorithms
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, Algorithm>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Algorithms)))).Returns(() => GetAlgorithmsResponse());
+
+			// FileEndings
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, List<string>>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.FileEndings)))).Returns(() => GetFileEndingsResponse());
+
+			// OutputFiles
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, OutputFile>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.OutputFiles)))).Returns(() => GetOutputFilesResponse());
+
+			// ProductionStatus
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ProductionStatus)))).Returns(() => GetProductionStatusResponse());
+
+			// ServiceTypes
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, ServiceType>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ServiceTypes)))).Returns(() => GetServiceTypeResponse());
+
+			// Info
+			ClientMock.Setup(c => c.Execute<Response<Info>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Info)))).Returns(() => GetInfoResponse());
 
 			Client = ClientMock.Object;
 		}
@@ -140,6 +159,36 @@ namespace AuphonicNet.Tests.Mock
 				case RequestType.AccountInfoNullToken:
 					result = !IsValidAccountInfoRequest(request) && IsNullAccessToken();
 					break;
+
+				// Algorithms
+				case RequestType.Algorithms:
+					result = request.Resource == "api/info/algorithms.json";
+					break;
+
+				// FileEndings
+				case RequestType.FileEndings:
+					result = request.Resource == "api/info/file_endings.json";
+					break;
+
+				// OutputFile
+				case RequestType.OutputFiles:
+					result = request.Resource == "api/info/output_files.json";
+					break;
+
+				// ProductionStatus
+				case RequestType.ProductionStatus:
+					result = request.Resource == "api/info/production_status.json";
+					break;
+
+				// ServiceTypes
+				case RequestType.ServiceTypes:
+					result = request.Resource == "api/info/service_types.json";
+					break;
+
+				// Info
+				case RequestType.Info:
+					result = request.Resource == "api/info.json";
+					break;
 			}
 
 			return result;
@@ -147,11 +196,11 @@ namespace AuphonicNet.Tests.Mock
 
 		private bool IsValidAuthenticateRequest(IRestRequest request)
 		{
-			Parameter clientId = request.Parameters.Find(p => p.Name == "client_id");
-			Parameter username = request.Parameters.Find(p => p.Name == "username");
-			Parameter password = request.Parameters.Find(p => p.Name == "password");
-			Parameter grantType = request.Parameters.Find(p => p.Name == "grant_type");
-			string authHeader = GetAuthHeader();
+			var clientId = request.Parameters.Find(p => p.Name == "client_id");
+			var username = request.Parameters.Find(p => p.Name == "username");
+			var password = request.Parameters.Find(p => p.Name == "password");
+			var grantType = request.Parameters.Find(p => p.Name == "grant_type");
+			var authHeader = GetAuthHeader();
 
 			bool isValid = request.Resource == "oauth2/token/" &&
 				clientId?.Value.ToString() == "clientId" &&
@@ -165,10 +214,10 @@ namespace AuphonicNet.Tests.Mock
 
 		private bool IsInvalidAuthenticateRequest(IRestRequest request, RequestType requestType)
 		{
-			Parameter clientId = request.Parameters.Find(p => p.Name == "client_id");
-			Parameter username = request.Parameters.Find(p => p.Name == "username");
-			Parameter password = request.Parameters.Find(p => p.Name == "password");
-			string authHeader = GetAuthHeader();
+			var clientId = request.Parameters.Find(p => p.Name == "client_id");
+			var username = request.Parameters.Find(p => p.Name == "username");
+			var password = request.Parameters.Find(p => p.Name == "password");
+			var authHeader = GetAuthHeader();
 
 			bool isValid = request.Resource == "oauth2/token/";
 
@@ -261,6 +310,36 @@ namespace AuphonicNet.Tests.Mock
 		private IRestResponse<Response<Account>> GetAccountInfoResponse()
 		{
 			return GetResponse<Account>("json/user.json");
+		}
+
+		private IRestResponse<Response<Dictionary<string, Algorithm>>> GetAlgorithmsResponse()
+		{
+			return GetResponse<Dictionary<string, Algorithm>>("json/algorithms.json");
+		}
+
+		private IRestResponse<Response<Dictionary<string, List<string>>>> GetFileEndingsResponse()
+		{
+			return GetResponse<Dictionary<string, List<string>>>("json/file_endings.json");
+		}
+
+		private IRestResponse<Response<Dictionary<string, OutputFile>>> GetOutputFilesResponse()
+		{
+			return GetResponse<Dictionary<string, OutputFile>>("json/output_files.json");
+		}
+
+		private IRestResponse<Response<Dictionary<string, string>>> GetProductionStatusResponse()
+		{
+			return GetResponse<Dictionary<string, string>>("json/production_status.json");
+		}
+
+		private IRestResponse<Response<Dictionary<string, ServiceType>>> GetServiceTypeResponse()
+		{
+			return GetResponse<Dictionary<string, ServiceType>>("json/service_types.json");
+		}
+
+		private IRestResponse<Response<Info>> GetInfoResponse()
+		{
+			return GetResponse<Info>("json/info.json");
 		}
 		#endregion
 	}

@@ -1,0 +1,134 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": {
+    "normloudness": {
+      "default_value": true,
+      "type": "checkbox",
+      "display_name": "Loudness Normalization",
+      "description": "Adjusts the global, overall loudness to the specified Loudness Target, so that all processed files have a similar average loudness. Uses a True Peak Limiter."
+    },
+    "loudnesstarget": {
+      "default_value": -16,
+      "display_name": "Loudness Target",
+      "description": "Select the loudness target in LUFS for Loudness Normalization, higher values result in louder audio outputs.",
+      "belongs_to": "normloudness",
+      "type": "select",
+      "options": [
+        {
+          "display_name": "-13 LUFS (very loud)",
+          "value": -13
+        },
+        {
+          "display_name": "-15 LUFS",
+          "value": -15
+        },
+        {
+          "display_name": "-16 LUFS (Podcasts and Mobile)",
+          "value": -16
+        },
+        {
+          "display_name": "-18 LUFS (ReplayGain similarity)",
+          "value": -18
+        },
+        {
+          "display_name": "-19 LUFS",
+          "value": -19
+        },
+        {
+          "display_name": "-20 LUFS",
+          "value": -20
+        },
+        {
+          "display_name": "-23 LUFS, EBU R128 (TV, Europe)",
+          "value": -23
+        },
+        {
+          "display_name": "-24 LUFS, ATSC A/85, no gate (TV, US)",
+          "value": -24
+        },
+        {
+          "display_name": "-26 LUFS",
+          "value": -26
+        },
+        {
+          "display_name": "-27 LUFS",
+          "value": -27
+        },
+        {
+          "display_name": "-31 LUFS (very quiet)",
+          "value": -31
+        }
+      ]
+    },
+    "denoise": {
+      "default_value": false,
+      "type": "checkbox",
+      "display_name": "Noise Reduction ",
+      "description": "Classifies regions with different backgrounds and automatically removes noise and hum."
+    },
+    "denoiseamount": {
+      "default_value": 0,
+      "display_name": "Noise Reduction Amount",
+      "description": "Maximum noise reduction amount, higher values remove more noise. Please use Automatic if you are not sure, otherwise music segments might be destroyed!",
+      "belongs_to": "denoise",
+      "type": "select",
+      "options": [
+        {
+          "display_name": "Auto",
+          "value": 0
+        },
+        {
+          "display_name": "3 dB",
+          "value": 3
+        },
+        {
+          "display_name": "6 dB (low)",
+          "value": 6
+        },
+        {
+          "display_name": "9 dB",
+          "value": 9
+        },
+        {
+          "display_name": "12 dB (medium)",
+          "value": 12
+        },
+        {
+          "display_name": "15 dB",
+          "value": 15
+        },
+        {
+          "display_name": "18 dB",
+          "value": 18
+        },
+        {
+          "display_name": "24 dB (high)",
+          "value": 24
+        },
+        {
+          "display_name": "30 dB",
+          "value": 30
+        },
+        {
+          "display_name": "100 dB (complete)",
+          "value": 100
+        }
+      ]
+    },
+    "hipfilter": {
+      "default_value": true,
+      "type": "checkbox",
+      "display_name": "Filtering",
+      "description": "Filters unnecessary and disturbing low frequencies depending on the context (speech, music, noise)."
+    },
+    "leveler": {
+      "default_value": true,
+      "type": "checkbox",
+      "display_name": "Adaptive Leveler",
+      "description": "Corrects level differences between speakers, music and speech, etc. to achieve a balanced overall loudness."
+    }
+  }
+}

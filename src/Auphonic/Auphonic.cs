@@ -1,5 +1,6 @@
 ﻿using AuphonicNet.Classes;
 using AuphonicNet.OAuth;
+using System.Collections.Generic;
 
 namespace AuphonicNet
 {
@@ -88,6 +89,66 @@ namespace AuphonicNet
 			Account account = _service.GetAccountInfo(_token);
 
 			return account;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, Algorithm> GetAlgorithms()
+		{
+			Dictionary<string, Algorithm> algorithms = _service.GetAlgorithms();
+			return algorithms;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, List<string>> GetFileEndings()
+		{
+			Dictionary<string, List<string>> fileEndings = _service.GetFileEndings();
+			return fileEndings;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, OutputFile> GetOutputFiles()
+		{
+			Dictionary<string, OutputFile> outputFiles = _service.GetOutputFiles();
+			return outputFiles;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, string> GetProductionStatus()
+		{
+			Dictionary<string, string> productionStatus = _service.GetProductionStatus();
+			return productionStatus;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, ServiceType> GetServiceTypes()
+		{
+			Dictionary<string, ServiceType> serviceTypes = _service.GetServiceTypes();
+			return serviceTypes;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Info GetInfo()
+		{
+			Info info = _service.GetInfo();
+			return info;
 		}
 		#endregion
 

@@ -3,6 +3,7 @@ using AuphonicNet.Classes;
 using AuphonicNet.OAuth;
 using RestSharp;
 using RestSharp.Authenticators;
+using System.Collections.Generic;
 using System.Net;
 
 namespace AuphonicNet
@@ -77,10 +78,82 @@ namespace AuphonicNet
 		{
 			Precondition.IsNotNull(token, nameof(token));
 
-			IRestRequest request = new RestRequest("api/user.json", Method.GET);
-			Response<Account> repsonse = ExecuteRequest<Account>(request, token);
+			IRestRequest request = new RestRequest("api/user.json");
+			Response<Account> response = ExecuteRequest<Account>(request, token);
 
-			return repsonse.Data;
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, Algorithm> GetAlgorithms()
+		{
+			IRestRequest request = new RestRequest("api/info/algorithms.json");
+			Response<Dictionary<string, Algorithm>> response = ExecuteRequest<Dictionary<string, Algorithm>>(request);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, List<string>> GetFileEndings()
+		{
+			IRestRequest request = new RestRequest("api/info/file_endings.json");
+			Response<Dictionary<string, List<string>>> response = ExecuteRequest<Dictionary<string, List<string>>>(request);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, OutputFile> GetOutputFiles()
+		{
+			IRestRequest request = new RestRequest("api/info/output_files.json");
+			Response<Dictionary<string, OutputFile>> response = ExecuteRequest<Dictionary<string, OutputFile>>(request);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, string> GetProductionStatus()
+		{
+			IRestRequest request = new RestRequest("api/info/production_status.json");
+			Response<Dictionary<string, string>> response = ExecuteRequest<Dictionary<string, string>>(request);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Dictionary<string, ServiceType> GetServiceTypes()
+		{
+			IRestRequest request = new RestRequest("api/info/service_types.json");
+			Response<Dictionary<string, ServiceType>> response = ExecuteRequest<Dictionary<string, ServiceType>>(request);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public Info GetInfo()
+		{
+			IRestRequest request = new RestRequest("api/info.json");
+			Response<Info> response = ExecuteRequest<Info>(request);
+
+			return response.Data;
 		}
 		#endregion
 

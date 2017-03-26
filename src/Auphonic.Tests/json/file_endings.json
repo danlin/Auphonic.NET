@@ -1,0 +1,85 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": {
+    "alac": [
+      "m4a",
+      "mp4"
+    ],
+    "stats": [
+      "txt",
+      "json",
+      "yaml"
+    ],
+    "descr": [
+      "json",
+      "xml",
+      "yaml"
+    ],
+    "aac": [
+      "m4a",
+      "mp4",
+      "m4b"
+    ],
+    "opus": [
+      "opus"
+    ],
+    "psc": [
+      "psc",
+      "xml",
+      "psc.json"
+    ],
+    "image": [
+      ""
+    ],
+    "mp3-vbr": [
+      "mp3"
+    ],
+    "wav": [
+      "wav"
+    ],
+    "subtitle": [
+      "vtt",
+      "srt"
+    ],
+    "vorbis": [
+      "ogg",
+      "oga"
+    ],
+    "waveform": [
+      "waveform.png"
+    ],
+    "tracks": [
+      "flac.zip",
+      "wav.zip"
+    ],
+    "transcript": [
+      "html"
+    ],
+    "video": [
+      ""
+    ],
+    "mp3": [
+      "mp3"
+    ],
+    "flac": [
+      "flac"
+    ],
+    "wavedat": [
+      "waveform.dat",
+      "waveform.json"
+    ],
+    "speech": [
+      "json",
+      "xml"
+    ],
+    "input": [
+      ""
+    ],
+    "chaps": [
+      "chapters.txt"
+    ]
+  }
+}

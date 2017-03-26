@@ -49,9 +49,16 @@
     <Compile Include="AuphonicException.cs" />
     <Compile Include="AuphonicService.cs" />
     <Compile Include="Classes\Account.cs" />
+    <Compile Include="Classes\Algorithm.cs" />
+    <Compile Include="Classes\Info.cs" />
+    <Compile Include="Classes\Option.cs" />
+    <Compile Include="Classes\OutputFile.cs" />
+    <Compile Include="Classes\Parameter.cs" />
+    <Compile Include="Classes\ServiceType.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="OAuth\OAuthToken.cs" />
     <Compile Include="Precondition.cs" />
+    <Compile Include="ProductionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

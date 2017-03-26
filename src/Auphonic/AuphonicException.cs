@@ -8,8 +8,14 @@ namespace AuphonicNet
 	public class AuphonicException : Exception
 	{
 		#region Public Properties
+		/// <summary>
+		/// 
+		/// </summary>
 		public string ErrorCode { get; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public string ErrorMessage { get; }
 		#endregion
 

@@ -3,6 +3,8 @@ using AuphonicNet.OAuth;
 using AuphonicNet.Tests.Mock;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AuphonicNet.Tests
 {
@@ -152,6 +154,95 @@ namespace AuphonicNet.Tests
 		}
 		#endregion
 
+		#region Tests - Algorithms
+		[Test]
+		public void GetAlgorithms_Returns_Valid_Result()
+		{
+			Dictionary<string, Algorithm> algorithms = null;
 
+			Assert.That(() => algorithms = _auphonicService.GetAlgorithms(), Throws.Nothing);
+			Assert.That(algorithms.Values.Count, Is.GreaterThan(0));
+			Assert.That(algorithms.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+		}
+		#endregion
+
+		#region Tests - File Endings
+		[Test]
+		public void GetFileEndings_Returns_Valid_Result()
+		{
+			Dictionary<string, List<string>> fileEndings = null;
+
+			Assert.That(() => fileEndings = _auphonicService.GetFileEndings(), Throws.Nothing);
+			Assert.That(fileEndings.Values.Count, Is.GreaterThan(0));
+			Assert.That(fileEndings.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+		}
+		#endregion
+
+		#region Tests - OutputFiles
+		[Test]
+		public void GetOutputFiles_Returns_Valid_Result()
+		{
+			Dictionary<string, OutputFile> outputFiles = null;
+
+			Assert.That(() => outputFiles = _auphonicService.GetOutputFiles(), Throws.Nothing);
+			Assert.That(outputFiles.Values.Count, Is.GreaterThan(0));
+			Assert.That(outputFiles.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+		}
+		#endregion
+
+		#region Tests - ProductionStatus
+		[Test]
+		public void GetProductionStatus_Returns_Valid_Result()
+		{
+			Dictionary<string, string> productionStatus = null;
+
+			Assert.That(() => productionStatus = _auphonicService.GetProductionStatus(), Throws.Nothing);
+			Assert.That(productionStatus.Values.Count, Is.GreaterThan(0));
+			Assert.That(productionStatus.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+		}
+		#endregion
+
+		#region Tests - ServiceTypes
+		[Test]
+		public void GetServiceTypes_Returns_Valid_Result()
+		{
+			Dictionary<string, ServiceType> serviceTypes = null;
+
+			Assert.That(() => serviceTypes = _auphonicService.GetServiceTypes(), Throws.Nothing);
+			Assert.That(serviceTypes.Values.Count, Is.GreaterThan(0));
+			Assert.That(serviceTypes.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+		}
+		#endregion
+
+		#region Tests - Info
+		[Test]
+		public void GetInfo_Returns_Valid_Result()
+		{
+			Info info = null;
+
+			Assert.That(() => info = _auphonicService.GetInfo(), Throws.Nothing);
+			Assert.That(info, Is.Not.Null);
+
+			Assert.That(info.Algorithms, Is.Not.Null);
+			Assert.That(info.Algorithms.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.Algorithms.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+
+			Assert.That(info.FileEndings, Is.Not.Null);
+			Assert.That(info.FileEndings.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.FileEndings.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+
+			Assert.That(info.OutputFiles, Is.Not.Null);
+			Assert.That(info.OutputFiles.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.OutputFiles.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+
+			Assert.That(info.ProductionStatus, Is.Not.Null);
+			Assert.That(info.ProductionStatus.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.ProductionStatus.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+
+			Assert.That(info.ServiceTypes, Is.Not.Null);
+			Assert.That(info.ServiceTypes.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.ServiceTypes.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+		}
+		#endregion
 	}
 }

@@ -2,6 +2,7 @@
 using AuphonicNet.Tests.Mock;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace AuphonicNet.Tests
 {
@@ -132,6 +133,72 @@ namespace AuphonicNet.Tests
 
 			Assert.That(() => account = _auphonic.GetAccountInfo(), Throws.Nothing);
 			Assert.That(account, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - Algorithms
+		[Test]
+		public void GetAlgorithms_Returns_Valid_Result()
+		{
+			Dictionary<string, Algorithm> algorithms = null;
+
+			Assert.That(() => algorithms = _auphonic.GetAlgorithms(), Throws.Nothing);
+			Assert.That(algorithms, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - File Endings
+		[Test]
+		public void GetFileEndings_Returns_Valid_Result()
+		{
+			Dictionary<string, List<string>> fileEndings = null;
+
+			Assert.That(() => fileEndings = _auphonic.GetFileEndings(), Throws.Nothing);
+			Assert.That(fileEndings, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - OutputFiles
+		[Test]
+		public void GetOutputFiles_Returns_Valid_Result()
+		{
+			Dictionary<string, OutputFile> outputFiles = null;
+
+			Assert.That(() => outputFiles = _auphonic.GetOutputFiles(), Throws.Nothing);
+			Assert.That(outputFiles, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - ProductionStatus
+		[Test]
+		public void GetProductionStatus_Returns_Valid_Result()
+		{
+			Dictionary<string, string> outputFiles = null;
+
+			Assert.That(() => outputFiles = _auphonic.GetProductionStatus(), Throws.Nothing);
+			Assert.That(outputFiles, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - ServiceTypes
+		[Test]
+		public void GetServiceTypes_Returns_Valid_Result()
+		{
+			Dictionary<string, ServiceType> serviceTypes = null;
+
+			Assert.That(() => serviceTypes = _auphonic.GetServiceTypes(), Throws.Nothing);
+			Assert.That(serviceTypes, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - Info
+		[Test]
+		public void GetInfo_Returns_Valid_Result()
+		{
+			Info info = null;
+
+			Assert.That(() => info = _auphonic.GetInfo(), Throws.Nothing);
+			Assert.That(info, Is.Not.Null);
 		}
 		#endregion
 	}
