@@ -7,7 +7,6 @@ using RestSharp.Authenticators;
 using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Reflection;
 
@@ -92,6 +91,14 @@ namespace AuphonicNet.Tests.Mock
 			// Info
 			ClientMock.Setup(c => c.Execute<Response<Info>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Info)))).Returns(() => GetInfoResponse());
 
+			// Productions
+			ClientMock.Setup(c => c.Execute<Response<List<Production>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Productions)))).Returns(() => GetProductionsResponse());
+			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ProductionsUuids)))).Returns(() => GetProductionsUuidsResponse());
+
+			// Presets
+			ClientMock.Setup(c => c.Execute<Response<List<Preset>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Presets)))).Returns(() => GetPresetsResponse());
+			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.PresetsUuids)))).Returns(() => GetPresetsUuidsResponse());
+
 			Client = ClientMock.Object;
 		}
 
@@ -116,7 +123,7 @@ namespace AuphonicNet.Tests.Mock
 		private IRestResponse<T> GetDefaultResponse<T>(string jsonFile) where T : new()
 		{
 			JsonDeserializer deserializer = new JsonDeserializer();
-			string json = File.ReadAllText(jsonFile);
+			string json = System.IO.File.ReadAllText(jsonFile);
 
 			IRestResponse<T> response = new RestResponse<T>();
 			response.Content = json;
@@ -189,6 +196,28 @@ namespace AuphonicNet.Tests.Mock
 				case RequestType.Info:
 					result = request.Resource == "api/info.json";
 					break;
+
+				// Productions
+				case RequestType.Production:
+					result = false;
+					break;
+				case RequestType.Productions:
+					result = IsValidProductionsRequest(request);
+					break;
+				case RequestType.ProductionsUuids:
+					result = IsValidProductionsUudisRequest(request);
+					break;
+
+				// Presets
+				case RequestType.Preset:
+					result = false;
+					break;
+				case RequestType.Presets:
+					result = IsValidPresetsRequest(request);
+					break;
+				case RequestType.PresetsUuids:
+					result = IsValidPresetsUudisRequest(request);
+					break;
 			}
 
 			return result;
@@ -251,6 +280,54 @@ namespace AuphonicNet.Tests.Mock
 			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
 
 			bool isValid = request.Resource == "api/user.json" &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsValidProductionsRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuidsOnly = request.Parameters.Find(p => p.Name == "uuids_only");
+
+			bool isValid = request.Resource == "api/productions.json" &&
+				uuidsOnly?.Value != (object)1 &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsValidProductionsUudisRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuidsOnly = request.Parameters.Find(p => p.Name == "uuids_only");
+
+			bool isValid = request.Resource == "api/productions.json" &&
+				(int)uuidsOnly?.Value == 1 &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsValidPresetsRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuidsOnly = request.Parameters.Find(p => p.Name == "uuids_only");
+
+			bool isValid = request.Resource == "api/presets.json" &&
+				uuidsOnly?.Value != (object)1 &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsValidPresetsUudisRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuidsOnly = request.Parameters.Find(p => p.Name == "uuids_only");
+
+			bool isValid = request.Resource == "api/presets.json" &&
+				(int)uuidsOnly?.Value == 1 &&
 				authenticator?.AccessToken == AccessToken;
 
 			return isValid;
@@ -340,6 +417,26 @@ namespace AuphonicNet.Tests.Mock
 		private IRestResponse<Response<Info>> GetInfoResponse()
 		{
 			return GetResponse<Info>("json/info.json");
+		}
+
+		private IRestResponse<Response<List<Production>>> GetProductionsResponse()
+		{
+			return GetResponse<List<Production>>("json/productions.json");
+		}
+
+		private IRestResponse<Response<List<string>>> GetProductionsUuidsResponse()
+		{
+			return GetResponse<List<string>>("json/productions_uuids.json");
+		}
+
+		private IRestResponse<Response<List<Preset>>> GetPresetsResponse()
+		{
+			return GetResponse<List<Preset>>("json/presets.json");
+		}
+
+		private IRestResponse<Response<List<string>>> GetPresetsUuidsResponse()
+		{
+			return GetResponse<List<string>>("json/presets_uuids.json");
 		}
 		#endregion
 	}

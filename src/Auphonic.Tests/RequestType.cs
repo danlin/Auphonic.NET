@@ -21,5 +21,12 @@
 		ProductionStatus,
 		ServiceTypes,
 		Info,
+
+		Production,
+		Productions,
+		ProductionsUuids,
+		Preset,
+		Presets,
+		PresetsUuids,
 	}
 }

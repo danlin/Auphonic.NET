@@ -1,0 +1,276 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": {
+    "status": 3,
+    "status_string": "Done",
+    "chapters": [
+      {
+        "title": "First Chapter Name",
+        "url": "https://auphonic.com",
+        "image": null,
+        "start": "00:00:10",
+        "start_sec": 10.0,
+        "start_output": "00:00:25.372",
+        "start_output_sec": 25.372585
+      },
+      {
+        "title": "Second Chapter",
+        "url": "",
+        "image": "https://auphonic.com/api/download/audio-upload/X2bUTQ8z888YaKukkU6vfJ/chapter1.png",
+        "start": "00:02:18",
+        "start_sec": 138.0,
+        "start_output": "00:02:33.372",
+        "start_output_sec": 153.372585
+      }
+    ],
+    "outgoing_services": [
+      {
+        "display_name": "Georg Holzmann",
+        "type": "dropbox",
+        "uuid": "UC6aoChNZNt7KYZNxJTgUn",
+        "email": "georg@bla.com",
+        "transfer_success": true,
+        "error_message": "",
+        "incoming": true,
+        "outgoing": true,
+        "result_page": "https://www.dropbox.com/home/Apps/auphonic/auphonic-results",
+        "result_urls": []
+      },
+      {
+        "display_name": "My big FTP server",
+        "path": "my_mirror/",
+        "host": "ftp.auphonic.com",
+        "type": "ftp",
+        "uuid": "r6MSycBwyeWFAJYqUKtGeX",
+        "port": 21,
+        "base_url": "http://auphonic.com/myfiles/",
+        "transfer_success": true,
+        "error_message": "",
+        "incoming": true,
+        "outgoing": true,
+        "result_page": null,
+        "result_urls": [
+          "http://auphonic.com/myfiles/my_filename.mp3",
+          "http://auphonic.com/myfiles/my_vorbis_file.ogg"
+        ]
+      },
+      {
+        "outgoing": true,
+        "sharing": "public",
+        "display_name": "auphonic-acc",
+        "uuid": "Asu5PxueRRxtqfZhe7zdia",
+        "track_type": "other",
+        "error_message": "",
+        "downloadable": false,
+        "incoming": true,
+        "type": "soundcloud",
+        "transfer_success": true,
+        "result_page": "http://soundcloud.com/auphonic-acc/auphonic-api-test",
+        "result_urls": []
+      },
+      {
+        "category": "Comedy",
+        "outgoing": true,
+        "display_name": "auphonic videos",
+        "uuid": "esSfxaPe6U2bNX2K9GGMeT",
+        "error_message": "",
+        "privacy": "private",
+        "incoming": false,
+        "type": "youtube",
+        "transfer_success": true,
+        "result_page": "https://www.youtube.com/watch?v=Ua11Jj44ydE",
+        "result_urls": []
+      }
+    ],
+    "uuid": "X2bUTQ8z888YaKukkU6vfJ",
+    "output_basename": "production-filename",
+    "output_files": [
+      {
+        "format": "mp3",
+        "ending": "mp3",
+        "suffix": "",
+        "filename": "my_filename.mp3",
+        "split_on_chapters": false,
+        "bitrate": 96,
+        "mono_mixdown": false,
+        "size": 803635,
+        "size_string": "784.8 KB",
+        "download_url": "https://auphonic.com/api/download/audio-result/X2bUTQ8z888YaKukkU6vfJ/my_filename.mp3",
+        "outgoing_services": [],
+        "checksum": "1bcb74117e73d00dc469d4364625468e"
+      },
+      {
+        "format": "vorbis",
+        "ending": "ogg",
+        "suffix": "",
+        "filename": "my_vorbis_file.ogg",
+        "split_on_chapters": false,
+        "bitrate": 40,
+        "mono_mixdown": true,
+        "size": 334848,
+        "size_string": "327.0 KB",
+        "download_url": "https://auphonic.com/api/download/audio-result/X2bUTQ8z888YaKukkU6vfJ/my_vorbis_file.ogg",
+        "outgoing_services": [],
+        "checksum": "f605a92ac8a833c75e99ec61613256ce"
+      }
+    ],
+    "image": "https://auphonic.com/api/download/audio-upload/X2bUTQ8z888YaKukkU6vfJ/your-cover-image.png",
+    "thumbnail": "https://auphonic.com/api/download/audio-upload/X2bUTQ8z888YaKukkU6vfJ/thumbnail.jpg",
+    "waveform_image": "https://auphonic.com/api/download/audio-result/X2bUTQ8z888YaKukkU6vfJ/waveform.png",
+    "creation_time": "2012-05-15T13:10:47.105",
+    "change_time": "2012-05-15T13:10:47.105",
+    "algorithms": {
+      "hipfilter": true,
+      "normloudness": true,
+      "denoise": true,
+      "leveler": false,
+      "loudnesstarget": -23,
+      "denoiseamount": 12
+    },
+    "service": "UC6aoChNZNt7KYZNxJTgUn",
+    "input_file": "bbc4.mp3",
+    "length": 65.430,
+    "length_timestring": "00:01:05.430",
+    "channels": 2,
+    "samplerate": 44100,
+    "bitrate": 196.0,
+    "format": "mp3",
+    "has_video": false,
+    "cut_start": 0.0,
+    "cut_end": 0.0,
+    "metadata": {
+      "album": "some album",
+      "subtitle": "Our subtitle",
+      "summary": "Our very long summary.",
+      "license": "Creative Commons Attribution 3.0 Unported",
+      "artist": "auphonic",
+      "track": "1",
+      "title": "Auphonic API Test",
+      "publisher": "auphonic",
+      "url": "https://auphonic.com",
+      "license_url": "http://creativecommons.org/licenses/by/3.0/",
+      "year": "2012",
+      "genre": "Podcast",
+      "append_chapters": false,
+      "tags": [ "query details", "auphonic", "production" ],
+      "location": {
+        "latitude": "47.070",
+        "longitude": "15.439"
+      }
+    },
+    "multi_input_files": [
+      {
+        "input_channels": 2,
+        "service": "bXZVoQYenncgViYYtU4g2T",
+        "input_samplerate": 48000,
+        "input_file": "intro.opus",
+        "input_bitrate": 143.12,
+        "input_filetype": "libopus",
+        "type": "intro",
+        "id": "",
+        "offset": 0,
+        "input_length": 15.3725850340136
+      },
+      {
+        "input_channels": 1,
+        "service": "8HMJsgQi9MV26TEYmHKmdm",
+        "input_samplerate": 44100,
+        "input_file": "outro.mp3",
+        "input_bitrate": 196.0,
+        "input_filetype": "mp3",
+        "type": "outro",
+        "id": "",
+        "offset": 0,
+        "input_length": 15.3725850340136
+      }
+    ],
+    "start_allowed": true,
+    "change_allowed": true,
+    "status_page": "https://auphonic.com/engine/status/X2bUTQ8z888YaKukkU6vfJ",
+    "edit_page": "https://auphonic.com/engine/upload/edit/X2bUTQ8z888YaKukkU6vfJ",
+    "error_status": null,
+    "error_message": "",
+    "warning_status": null,
+    "warning_message": "",
+    "webhook": "http://example.com/callback/",
+    "is_multitrack": false,
+    "used_credits": {
+      "onetime": 0.04,
+      "recurring": 0.01,
+      "combined": 0.05
+    },
+    "speech_recognition": {
+      "keywords": [ "Auphonic", "Loudness", "Audio Restoration" ],
+      "type": "google",
+      "uuid": "kw7q5CHaGSLgduyMhc9j9K",
+      "language": "en-US"
+    },
+    "statistics": {
+      "levels": {
+        "input": {
+          "lra": [ 19.23, "LU" ],
+          "noise_level": [ -49.63, "dB" ],
+          "max_momentary": [ -10.75, "LUFS" ],
+          "signal_level": [ -23.51, "dB" ],
+          "snr": [ 26.12, "dB" ],
+          "max_shortterm": [ -12.71, "LUFS" ],
+          "loudness": [ -17.71, "LUFS" ]
+        },
+        "output": {
+          "lra": [ 3.0, "LU" ],
+          "max_shortterm": [ -14.3, "LUFS" ],
+          "max_momentary": [ -11.02, "LUFS" ],
+          "gain_min": [ -2.5, "dB" ],
+          "peak": [ -1.0, "dBTP" ],
+          "gain_mean": [ 7.9, "dB" ],
+          "loudness": [ -16.0, "LUFS" ],
+          "gain_max": [ 21.04, "dB" ]
+        }
+      },
+      "music_speech": [
+        {
+          "label": "speech",
+          "start": "00:00:00.000",
+          "start_sec": 0.0,
+          "stop": "00:01:13.440",
+          "stop_sec": 73.44
+        },
+        {
+          "label": "music",
+          "start": "00:01:13.440",
+          "start_sec": 73.44,
+          "stop": "00:01:35.520",
+          "stop_sec": 95.52
+        },
+        {
+          "label": "speech",
+          "start": "00:01:35.520",
+          "start_sec": 95.52,
+          "stop": "00:01:59.223",
+          "stop_sec": 119.224
+        }
+      ],
+      "noise_hum_reduction": [
+        {
+          "denoise": -12,
+          "dehum": false,
+          "start": "00:00:00.000",
+          "start_sec": 0.0,
+          "stop": "00:01:01.528",
+          "stop_sec": 61.528
+        },
+        {
+          "denoise": false,
+          "dehum": false,
+          "start": "00:01:01.528",
+          "start_sec": 61.528,
+          "stop": "00:01:59.223",
+          "stop_sec": 119.224
+        }
+      ]
+    }
+  }
+}

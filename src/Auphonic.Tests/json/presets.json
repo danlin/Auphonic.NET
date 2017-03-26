@@ -1,0 +1,133 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": [
+    {
+      "output_files": [
+        {
+          "format": "mp3",
+          "ending": "mp3",
+          "suffix": "",
+          "filename": "",
+          "split_on_chapters": false,
+          "bitrate": 96,
+          "mono_mixdown": false,
+          "size": "None",
+          "size_string": "",
+          "download_url": "None",
+          "outgoing_services": [],
+          "outgoing_service_urls": []
+        },
+        {
+          "format": "vorbis",
+          "ending": "ogg",
+          "suffix": "-small",
+          "filename": "",
+          "split_on_chapters": false,
+          "bitrate": 40,
+          "mono_mixdown": true,
+          "size": "None",
+          "size_string": "",
+          "download_url": "None",
+          "outgoing_services": [],
+          "outgoing_service_urls": []
+        }
+      ],
+      "output_basename": "",
+      "outgoing_services": [
+        {
+          "display_name": "Georg Holzmann",
+          "type": "dropbox",
+          "uuid": "UC6aoChNZNt7KYZNxJTgUn",
+          "email": "georg@bla.com",
+          "transfer_success": false,
+          "error_message": "",
+          "incoming": true,
+          "outgoing": true,
+          "result_page": null,
+          "result_urls": []
+        },
+        {
+          "display_name": "SFTP bla.com",
+          "path": "/home/data/my_auphonic_dir/",
+          "host": "bla.com",
+          "type": "sftp",
+          "uuid": "r6MSycBwyeWFAJYqUKtGeX",
+          "port": 22,
+          "base_url": "",
+          "transfer_success": false,
+          "error_message": "",
+          "incoming": true,
+          "outgoing": true,
+          "result_page": null,
+          "result_urls": []
+        }
+      ],
+      "uuid": "YnzGYccbzEj5MQwiSGfrqC",
+      "algorithms": {
+        "hipfilter": true,
+        "normloudness": true,
+        "denoise": false,
+        "leveler": true,
+        "loudnesstarget": -23,
+        "denoiseamount": 12
+      },
+      "image": "https://auphonic.com/api/download/preset/YnzGYccbzEj5MQwiSGfrqC/my-preset-image.png",
+      "creation_time": "2012-05-14T19:27:34.833",
+      "thumbnail": "https://auphonic.com/api/download/preset/YnzGYccbzEj5MQwiSGfrqC/thumbnail.jpg",
+      "preset_name": "New Api Preset",
+      "metadata": {
+        "album": "Auphonic Album",
+        "subtitle": "",
+        "license": "Creative Commons Attribution 3.0 Unported",
+        "summary": "",
+        "artist": "Auphonic",
+        "track": "",
+        "title": "",
+        "publisher": "Auphonic",
+        "url": "https://auphonic.com",
+        "license_url": "http://creativecommons.org/licenses/by/3.0/",
+        "year": "2012",
+        "genre": "Podcast",
+        "append_chapters": false,
+        "tags": [ "query details", "auphonic", "preset" ],
+        "location": {
+          "latitude": "47.070",
+          "longitude": "15.439"
+        }
+      },
+      "multi_input_files": [
+        {
+          "input_channels": 2,
+          "service": "bXZVoQYenncgViYYtU4g2T",
+          "input_samplerate": 48000,
+          "input_file": "intro.opus",
+          "input_bitrate": 143.12,
+          "input_filetype": "libopus",
+          "type": "intro",
+          "input_length": 15.3725850340136
+        },
+        {
+          "input_channels": 1,
+          "service": "8HMJsgQi9MV26TEYmHKmdm",
+          "input_samplerate": 44100,
+          "input_file": "outro.mp3",
+          "input_bitrate": 196.0,
+          "input_filetype": "mp3",
+          "type": "outro",
+          "input_length": 15.3725850340136
+        }
+      ],
+      "speech_recognition": {
+        "keywords": [ "Auphonic", "Loudness", "Audio Restoration" ],
+        "type": "google",
+        "uuid": "kw7q5CHaGSLgduyMhc9j9K",
+        "language": "en-US"
+      },
+      "is_multitrack": false,
+      "webhook": "http://example.com/callback/"
+    }
+  ]
+}

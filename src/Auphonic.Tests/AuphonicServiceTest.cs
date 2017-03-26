@@ -244,5 +244,121 @@ namespace AuphonicNet.Tests
 			Assert.That(info.ServiceTypes.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
 		}
 		#endregion
+
+		#region Tests - Productions
+		[Test]
+		public void GetProductions_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetProductions(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+
+			Assert.That(() => _auphonicService.GetProductions(null, 0), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+
+			Assert.That(() => _auphonicService.GetProductions(null, 0, 0), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetProductions_With_Invalid_Parameters_Throws_ArgumentOutOfRangeException()
+		{
+			Assert.That(() => _auphonicService.GetProductions(Token, -1), Throws
+				.InstanceOf<ArgumentOutOfRangeException>()
+				.And.Property("ParamName").EqualTo("limit"));
+
+			Assert.That(() => _auphonicService.GetProductions(Token, 0, -1), Throws
+				.InstanceOf<ArgumentOutOfRangeException>()
+				.And.Property("ParamName").EqualTo("offset"));
+		}
+
+		[Test]
+		public void GetProductions_Returns_Valid_Result()
+		{
+			List<Production> productions = null;
+
+			Assert.That(() => productions = _auphonicService.GetProductions(Token), Throws.Nothing);
+			Assert.That(productions, Is.Not.Null);
+			Assert.That(productions.Count, Is.GreaterThan(0));
+		}
+
+		[Test]
+		public void GetProductionsUuids_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetProductionsUuids(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetProductionsUuids_Returns_Valid_Result()
+		{
+			List<string> productionsUudis = null;
+
+			Assert.That(() => productionsUudis = _auphonicService.GetProductionsUuids(Token), Throws.Nothing);
+			Assert.That(productionsUudis, Is.Not.Null);
+			Assert.That(productionsUudis.Count, Is.GreaterThan(0));
+		}
+		#endregion
+
+		#region Tests
+		[Test]
+		public void GetPresets_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetPresets(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+
+			Assert.That(() => _auphonicService.GetPresets(null, 0), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+
+			Assert.That(() => _auphonicService.GetPresets(null, 0, 0), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetPresets_With_Invalid_Parameters_Throws_ArgumentOutOfRangeException()
+		{
+			Assert.That(() => _auphonicService.GetPresets(Token, -1), Throws
+				.InstanceOf<ArgumentOutOfRangeException>()
+				.And.Property("ParamName").EqualTo("limit"));
+
+			Assert.That(() => _auphonicService.GetPresets(Token, 0, -1), Throws
+				.InstanceOf<ArgumentOutOfRangeException>()
+				.And.Property("ParamName").EqualTo("offset"));
+		}
+
+		[Test]
+		public void GetPresets_Returns_Valid_Result()
+		{
+			List<Preset> presets = null;
+
+			Assert.That(() => presets = _auphonicService.GetPresets(Token), Throws.Nothing);
+			Assert.That(presets, Is.Not.Null);
+			Assert.That(presets.Count, Is.GreaterThan(0));
+		}
+
+		[Test]
+		public void GetPresetsUuids_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetPresetsUuids(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetPresetsUuids_Returns_Valid_Result()
+		{
+			List<string> presetsUudis = null;
+
+			Assert.That(() => presetsUudis = _auphonicService.GetPresetsUuids(Token), Throws.Nothing);
+			Assert.That(presetsUudis, Is.Not.Null);
+			Assert.That(presetsUudis.Count, Is.GreaterThan(0));
+		}
+		#endregion
 	}
 }

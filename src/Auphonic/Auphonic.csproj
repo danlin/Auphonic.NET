@@ -50,15 +50,32 @@
     <Compile Include="AuphonicService.cs" />
     <Compile Include="Classes\Account.cs" />
     <Compile Include="Classes\Algorithm.cs" />
+    <Compile Include="Classes\Algorithms.cs" />
+    <Compile Include="Classes\Chapter.cs" />
+    <Compile Include="Classes\File.cs" />
     <Compile Include="Classes\Info.cs" />
+    <Compile Include="Classes\Level.cs" />
+    <Compile Include="Classes\Levels.cs" />
+    <Compile Include="Classes\MultiInputFile.cs" />
+    <Compile Include="Classes\Location.cs" />
+    <Compile Include="Classes\Metadata.cs" />
+    <Compile Include="Classes\MusicSpeech.cs" />
+    <Compile Include="Classes\NoiseHumReduction.cs" />
     <Compile Include="Classes\Option.cs" />
+    <Compile Include="Classes\OutgoingService.cs" />
     <Compile Include="Classes\OutputFile.cs" />
     <Compile Include="Classes\Parameter.cs" />
+    <Compile Include="Classes\Preset.cs" />
+    <Compile Include="Classes\Production.cs" />
     <Compile Include="Classes\ServiceType.cs" />
+    <Compile Include="Classes\SpeechRecognition.cs" />
+    <Compile Include="Classes\Credits.cs" />
+    <Compile Include="Classes\Statistics.cs" />
+    <Compile Include="Extensions\ComparableExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="OAuth\OAuthToken.cs" />
     <Compile Include="Precondition.cs" />
-    <Compile Include="ProductionStatus.cs" />
+    <Compile Include="Classes\ProductionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

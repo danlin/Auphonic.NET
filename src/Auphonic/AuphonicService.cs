@@ -155,6 +155,142 @@ namespace AuphonicNet
 
 			return response.Data;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <returns></returns>
+		public List<Production> GetProductions(OAuthToken token)
+		{
+			return GetProductions(token, 0, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public List<Production> GetProductions(OAuthToken token, int limit)
+		{
+			return GetProductions(token, limit, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="limit"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
+		public List<Production> GetProductions(OAuthToken token, int limit, int offset)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsGreaterOrEqual(limit, 0, nameof(limit));
+			Precondition.IsGreaterOrEqual(offset, 0, nameof(offset));
+
+			IRestRequest request = new RestRequest("api/productions.json");
+
+			if (limit > 0)
+			{
+				request.AddParameter("limit", limit);
+			}
+
+			if (offset > 0)
+			{
+				request.AddParameter("offset", offset);
+			}
+
+			Response<List<Production>> response = ExecuteRequest<List<Production>>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <returns></returns>
+		public List<Preset> GetPresets(OAuthToken token)
+		{
+			return GetPresets(token, 0, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public List<Preset> GetPresets(OAuthToken token, int limit)
+		{
+			return GetPresets(token, limit, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="limit"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
+		public List<Preset> GetPresets(OAuthToken token, int limit, int offset)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsGreaterOrEqual(limit, 0, nameof(limit));
+			Precondition.IsGreaterOrEqual(offset, 0, nameof(offset));
+
+			IRestRequest request = new RestRequest("api/presets.json");
+
+			if (limit > 0)
+			{
+				request.AddParameter("limit", limit);
+			}
+
+			if (offset > 0)
+			{
+				request.AddParameter("offset", offset);
+			}
+
+			Response<List<Preset>> response = ExecuteRequest<List<Preset>>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <returns></returns>
+		public List<string> GetProductionsUuids(OAuthToken token)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+
+			IRestRequest request = new RestRequest("api/productions.json");
+			request.AddParameter("uuids_only", 1);
+
+			Response<List<string>> response = ExecuteRequest<List<string>>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <returns></returns>
+		public List<string> GetPresetsUuids(OAuthToken token)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+
+			IRestRequest request = new RestRequest("api/presets.json");
+			request.AddParameter("uuids_only", 1);
+
+			Response<List<string>> response = ExecuteRequest<List<string>>(request, token);
+
+			return response.Data;
+		}
 		#endregion
 
 		#region Private Methods

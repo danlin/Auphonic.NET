@@ -150,6 +150,96 @@ namespace AuphonicNet
 			Info info = _service.GetInfo();
 			return info;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public List<Production> GetProductions()
+		{
+			return GetProductions(0, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public List<Production> GetProductions(int limit)
+		{
+			return GetProductions(limit, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="limit"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
+		public List<Production> GetProductions(int limit, int offset)
+		{
+			CheckAuthentication();
+			List<Production> productions = _service.GetProductions(_token, limit, offset);
+
+			return productions;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public List<string> GetProductionsUuids()
+		{
+			CheckAuthentication();
+			List<string> productions = _service.GetProductionsUuids(_token);
+
+			return productions;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public List<Preset> GetPresets()
+		{
+			return GetPresets(0, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public List<Preset> GetPresets(int limit)
+		{
+			return GetPresets(limit, 0);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="limit"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
+		public List<Preset> GetPresets(int limit, int offset)
+		{
+			CheckAuthentication();
+			List<Preset> productions = _service.GetPresets(_token, limit, offset);
+
+			return productions;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public List<string> GetPresetsUuids()
+		{
+			CheckAuthentication();
+			List<string> presets = _service.GetPresetsUuids(_token);
+
+			return presets;
+		}
 		#endregion
 
 		#region Private Methods

@@ -201,5 +201,85 @@ namespace AuphonicNet.Tests
 			Assert.That(info, Is.Not.Null);
 		}
 		#endregion
+
+		#region Tests - Productions
+		[Test]
+		public void GetProductions_Without_Authentication_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonic.GetProductions(), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo("")
+				.And.Property("ErrorMessage").EqualTo(MessageNoCredentials));
+		}
+
+		[Test]
+		public void GetProductions_With_Authentication_Returns_Valid_Result()
+		{
+			_auphonic.Authenticate(AccessToken);
+			List<Production> productions = null;
+
+			Assert.That(() => productions = _auphonic.GetProductions(), Throws.Nothing);
+			Assert.That(productions, Is.Not.Null);
+		}
+
+		[Test]
+		public void GetProductionsUuids_Without_Authentication_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonic.GetProductionsUuids(), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo("")
+				.And.Property("ErrorMessage").EqualTo(MessageNoCredentials));
+		}
+
+		[Test]
+		public void GetProductionsUuids_With_Authentication_Returns_Valid_Result()
+		{
+			_auphonic.Authenticate(AccessToken);
+			List<string> productionsUuids = null;
+
+			Assert.That(() => productionsUuids = _auphonic.GetProductionsUuids(), Throws.Nothing);
+			Assert.That(productionsUuids, Is.Not.Null);
+		}
+		#endregion
+
+		#region Tests - Presets
+		[Test]
+		public void GetPresets_Without_Authentication_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonic.GetPresets(), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo("")
+				.And.Property("ErrorMessage").EqualTo(MessageNoCredentials));
+		}
+
+		[Test]
+		public void GetPresets_With_Authentication_Returns_Valid_Result()
+		{
+			_auphonic.Authenticate(AccessToken);
+			List<Preset> presets = null;
+
+			Assert.That(() => presets = _auphonic.GetPresets(), Throws.Nothing);
+			Assert.That(presets, Is.Not.Null);
+		}
+
+		[Test]
+		public void GetPresetsUuids_Without_Authentication_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonic.GetPresetsUuids(), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo("")
+				.And.Property("ErrorMessage").EqualTo(MessageNoCredentials));
+		}
+
+		[Test]
+		public void GetPresetsUuids_With_Authentication_Returns_Valid_Result()
+		{
+			_auphonic.Authenticate(AccessToken);
+			List<string> productionsUuids = null;
+
+			Assert.That(() => productionsUuids = _auphonic.GetPresetsUuids(), Throws.Nothing);
+			Assert.That(productionsUuids, Is.Not.Null);
+		}
+		#endregion
 	}
 }
