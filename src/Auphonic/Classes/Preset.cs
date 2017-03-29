@@ -38,6 +38,10 @@ namespace AuphonicNet.Classes
 		public string Webhook { get; set; }
 		#endregion
 
+		#region Internal Methods
+		public bool ResetData { get; set; }
+		#endregion
+
 		#region Constructor
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Preset"/> class.
