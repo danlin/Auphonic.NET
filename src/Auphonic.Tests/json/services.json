@@ -1,0 +1,109 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": [
+    {
+      "display_name": "Georg Holzmann",
+      "type": "dropbox",
+      "uuid": "UC6aoChNZNt7KYZNxJTgUn",
+      "email": "georg@myserver.at",
+      "incoming": true,
+      "outgoing": true
+    },
+    {
+      "display_name": "my soundcloud account",
+      "type": "soundcloud",
+      "uuid": "Asu5PxueRRxtqfZhe7zdia",
+      "incoming": true,
+      "outgoing": true
+    },
+    {
+      "display_name": "my youtube vids",
+      "type": "youtube",
+      "uuid": "esSfxaPe6U2bNX2K9GGMeT",
+      "incoming": false,
+      "outgoing": true
+    },
+    {
+      "display_name": "Auphonic Spreaker Account",
+      "type": "spreaker",
+      "uuid": "UL7MZvjR3tntbCvbxu5Jsi",
+      "outgoing": true,
+      "incoming": true
+    },
+    {
+      "display_name": "my ftp server",
+      "path": "mirror/",
+      "host": "ftp.myserver.at",
+      "type": "ftp",
+      "uuid": "r6MSycBwyeWFAJYqUKtGeX",
+      "port": 21,
+      "base_url": "",
+      "permissions": "",
+      "incoming": true,
+      "outgoing": true
+    },
+    {
+      "display_name": "myserver.at SFTP",
+      "path": "/home/user/path",
+      "host": "myserver.at",
+      "type": "sftp",
+      "uuid": "jm7yLuiyGwQe27gQUz869K",
+      "port": 22,
+      "base_url": "http://myserver.at/audiofiles/",
+      "permissions": "664",
+      "incoming": true,
+      "outgoing": true
+    },
+    {
+      "outgoing": true,
+      "display_name": "mypodcast /quickcast",
+      "uuid": "h9KHD96Mks5JyfFuXYPXHk",
+      "libsyn_show_slug": "mypodcast",
+      "base_url": "http://traffic.libsyn.com/mypodcast/",
+      "port": 21,
+      "host": "ftp-server.libsyn.com",
+      "path": "/mypodcast/quickcast",
+      "incoming": false,
+      "type": "libsyn",
+      "libsyn_directory": "quickcast"
+    },
+    {
+      "outgoing": true,
+      "display_name": "auphonic bucket 1",
+      "uuid": "gRNT7i5NVxPiGCG8TmhpgF",
+      "type": "amazons3",
+      "bucket": "auphonic1",
+      "incoming": true,
+      "canned_acl": "public-read",
+      "key_prefix": "my-podcast/"
+    },
+    {
+      "type": "archiveorg",
+      "outgoing": true,
+      "display_name": "archive",
+      "uuid": "PQaZpL58TqvK9NvDnHu5Hj",
+      "incoming": false
+    },
+    {
+      "outgoing": true,
+      "display_name": "My WebDAV Server",
+      "uuid": "9k27BXTmvsKCdeoyXkHjVB",
+      "url": "https://mywebdav.com/myfiles/",
+      "base_url": "http://files.mywebdav.com/myfiles/",
+      "incoming": true,
+      "type": "webdav"
+    },
+    {
+      "outgoing": true,
+      "display_name": "Auphonic Blubrry Account",
+      "uuid": "xJTES9PCAu3uvLE3gwSjAN",
+      "program_keyword": "auphonic_blubrry_account",
+      "base_url": "http://content.blubrry.com/auphonic_blubrry_account",
+      "incoming": false,
+      "type": "blubrry"
+    }
+  ]
+}

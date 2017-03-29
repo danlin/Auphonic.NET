@@ -92,13 +92,20 @@ namespace AuphonicNet.Tests.Mock
 			ClientMock.Setup(c => c.Execute<Response<Info>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Info)))).Returns(() => GetInfoResponse());
 
 			// Productions
+			ClientMock.Setup(c => c.Execute<Response<Production>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Production)))).Returns(() => GetProductionResponse());
 			ClientMock.Setup(c => c.Execute<Response<List<Production>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Productions)))).Returns(() => GetProductionsResponse());
-			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ProductionsUuids)))).Returns(() => GetProductionsUuidsResponse());
+			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ProductionsUuids)))).Returns(() => GetUuidsResponse());
 
 			// Presets
+			ClientMock.Setup(c => c.Execute<Response<Preset>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Preset)))).Returns(() => GetPresetResponse());
 			ClientMock.Setup(c => c.Execute<Response<List<Preset>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Presets)))).Returns(() => GetPresetsResponse());
-			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.PresetsUuids)))).Returns(() => GetPresetsUuidsResponse());
+			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.PresetsUuids)))).Returns(() => GetUuidsResponse());
 
+			// Services
+			ClientMock.Setup(c => c.Execute<Response<List<Service>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Services)))).Returns(() => GetServicesResponse());
+			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ServiceFiles)))).Returns(() => GetServiceFilesResponse());
+
+			// Client
 			Client = ClientMock.Object;
 		}
 
@@ -167,56 +174,55 @@ namespace AuphonicNet.Tests.Mock
 					result = !IsValidAccountInfoRequest(request) && IsNullAccessToken();
 					break;
 
-				// Algorithms
+				// Infos
+				case RequestType.Info:
+					result = request.Resource == "api/info.json";
+					break;
 				case RequestType.Algorithms:
 					result = request.Resource == "api/info/algorithms.json";
 					break;
-
-				// FileEndings
 				case RequestType.FileEndings:
 					result = request.Resource == "api/info/file_endings.json";
 					break;
-
-				// OutputFile
 				case RequestType.OutputFiles:
 					result = request.Resource == "api/info/output_files.json";
 					break;
-
-				// ProductionStatus
 				case RequestType.ProductionStatus:
 					result = request.Resource == "api/info/production_status.json";
 					break;
-
-				// ServiceTypes
 				case RequestType.ServiceTypes:
 					result = request.Resource == "api/info/service_types.json";
 					break;
 
-				// Info
-				case RequestType.Info:
-					result = request.Resource == "api/info.json";
-					break;
-
 				// Productions
 				case RequestType.Production:
-					result = false;
+					result = IsValidProductionRequest(request);
 					break;
 				case RequestType.Productions:
 					result = IsValidProductionsRequest(request);
 					break;
-				case RequestType.ProductionsUuids:
-					result = IsValidProductionsUudisRequest(request);
-					break;
 
 				// Presets
 				case RequestType.Preset:
-					result = false;
+					result = IsValidPresetRequest(request);
 					break;
 				case RequestType.Presets:
 					result = IsValidPresetsRequest(request);
 					break;
+
+				// Uuids only
+				case RequestType.ProductionsUuids:
 				case RequestType.PresetsUuids:
-					result = IsValidPresetsUudisRequest(request);
+					result = IsValidUudisRequest(request);
+					break;
+
+				// Services
+				case RequestType.Services:
+					result = IsValidServicesRequest(request);
+					break;
+
+				case RequestType.ServiceFiles:
+					result = IsValidServiceFilesRequest(request);
 					break;
 			}
 
@@ -285,6 +291,18 @@ namespace AuphonicNet.Tests.Mock
 			return isValid;
 		}
 
+		private bool IsValidProductionRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuid = request.Parameters.Find(p => p.Name == "uuid");
+
+			bool isValid = request.Resource == "api/production/{uuid}.json" &&
+				uuid?.Value == (object)"uuid" &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
 		private bool IsValidProductionsRequest(IRestRequest request)
 		{
 			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
@@ -297,13 +315,13 @@ namespace AuphonicNet.Tests.Mock
 			return isValid;
 		}
 
-		private bool IsValidProductionsUudisRequest(IRestRequest request)
+		private bool IsValidPresetRequest(IRestRequest request)
 		{
 			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
-			var uuidsOnly = request.Parameters.Find(p => p.Name == "uuids_only");
+			var uuid = request.Parameters.Find(p => p.Name == "uuid");
 
-			bool isValid = request.Resource == "api/productions.json" &&
-				(int)uuidsOnly?.Value == 1 &&
+			bool isValid = request.Resource == "api/preset/{uuid}.json" &&
+				uuid?.Value == (object)"uuid" &&
 				authenticator?.AccessToken == AccessToken;
 
 			return isValid;
@@ -321,13 +339,35 @@ namespace AuphonicNet.Tests.Mock
 			return isValid;
 		}
 
-		private bool IsValidPresetsUudisRequest(IRestRequest request)
+		private bool IsValidUudisRequest(IRestRequest request)
 		{
 			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
 			var uuidsOnly = request.Parameters.Find(p => p.Name == "uuids_only");
 
-			bool isValid = request.Resource == "api/presets.json" &&
+			bool isValid = (request.Resource == "api/productions.json" || request.Resource == "api/presets.json") &&
 				(int)uuidsOnly?.Value == 1 &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsValidServicesRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+
+			bool isValid = request.Resource == "api/services.json" &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsValidServiceFilesRequest(IRestRequest request)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuid = request.Parameters.Find(p => p.Name == "uuid");
+
+			bool isValid = request.Resource == "api/service/{uuid}/ls.json" &&
+				uuid != null &&
 				authenticator?.AccessToken == AccessToken;
 
 			return isValid;
@@ -419,14 +459,19 @@ namespace AuphonicNet.Tests.Mock
 			return GetResponse<Info>("json/info.json");
 		}
 
+		private IRestResponse<Response<Production>> GetProductionResponse()
+		{
+			return GetResponse<Production>("json/production.json");
+		}
+
 		private IRestResponse<Response<List<Production>>> GetProductionsResponse()
 		{
 			return GetResponse<List<Production>>("json/productions.json");
 		}
 
-		private IRestResponse<Response<List<string>>> GetProductionsUuidsResponse()
+		private IRestResponse<Response<Preset>> GetPresetResponse()
 		{
-			return GetResponse<List<string>>("json/productions_uuids.json");
+			return GetResponse<Preset>("json/preset.json");
 		}
 
 		private IRestResponse<Response<List<Preset>>> GetPresetsResponse()
@@ -434,9 +479,19 @@ namespace AuphonicNet.Tests.Mock
 			return GetResponse<List<Preset>>("json/presets.json");
 		}
 
-		private IRestResponse<Response<List<string>>> GetPresetsUuidsResponse()
+		private IRestResponse<Response<List<string>>> GetUuidsResponse()
 		{
-			return GetResponse<List<string>>("json/presets_uuids.json");
+			return GetResponse<List<string>>("json/uuids.json");
+		}
+
+		private IRestResponse<Response<List<Service>>> GetServicesResponse()
+		{
+			return GetResponse<List<Service>>("json/services.json");
+		}
+
+		private IRestResponse<Response<List<string>>> GetServiceFilesResponse()
+		{
+			return GetResponse<List<string>>("json/service_files.json");
 		}
 		#endregion
 	}

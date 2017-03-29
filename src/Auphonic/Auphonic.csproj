@@ -67,6 +67,7 @@
     <Compile Include="Classes\Parameter.cs" />
     <Compile Include="Classes\Preset.cs" />
     <Compile Include="Classes\Production.cs" />
+    <Compile Include="Classes\Service.cs" />
     <Compile Include="Classes\ServiceType.cs" />
     <Compile Include="Classes\SpeechRecognition.cs" />
     <Compile Include="Classes\Credits.cs" />

@@ -160,6 +160,25 @@ namespace AuphonicNet
 		/// 
 		/// </summary>
 		/// <param name="token"></param>
+		/// <param name="uuid"></param>
+		/// <returns></returns>
+		public Production GetProduction(OAuthToken token, string uuid)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/production/{uuid}.json");
+			request.AddParameter("uuid", uuid, ParameterType.UrlSegment);
+
+			Response<Production> response = ExecuteRequest<Production>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
 		/// <returns></returns>
 		public List<Production> GetProductions(OAuthToken token)
 		{
@@ -203,6 +222,25 @@ namespace AuphonicNet
 			}
 
 			Response<List<Production>> response = ExecuteRequest<List<Production>>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="uuid"></param>
+		/// <returns></returns>
+		public Preset GetPreset(OAuthToken token, string uuid)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/preset/{uuid}.json");
+			request.AddParameter("uuid", uuid, ParameterType.UrlSegment);
+
+			Response<Preset> response = ExecuteRequest<Preset>(request, token);
 
 			return response.Data;
 		}
@@ -286,6 +324,41 @@ namespace AuphonicNet
 
 			IRestRequest request = new RestRequest("api/presets.json");
 			request.AddParameter("uuids_only", 1);
+
+			Response<List<string>> response = ExecuteRequest<List<string>>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <returns></returns>
+		public List<Service> GetServices(OAuthToken token)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+
+			IRestRequest request = new RestRequest("api/services.json");
+
+			Response<List<Service>> response = ExecuteRequest<List<Service>>(request, token);
+
+			return response.Data;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="uuid"></param>
+		/// <returns></returns>
+		public List<string> GetServiceFiles(OAuthToken token, string uuid)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/service/{uuid}/ls.json");
+			request.AddParameter("uuid", uuid, ParameterType.UrlSegment);
 
 			Response<List<string>> response = ExecuteRequest<List<string>>(request, token);
 

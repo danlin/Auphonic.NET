@@ -28,5 +28,8 @@
 		Preset,
 		Presets,
 		PresetsUuids,
+
+		Services,
+		ServiceFiles,
 	}
 }

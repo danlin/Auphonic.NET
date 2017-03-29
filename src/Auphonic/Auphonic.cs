@@ -154,6 +154,19 @@ namespace AuphonicNet
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="uuid"></param>
+		/// <returns></returns>
+		public Production GetProduction(string uuid)
+		{
+			CheckAuthentication();
+			Production production = _service.GetProduction(_token, uuid);
+
+			return production;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <returns></returns>
 		public List<Production> GetProductions()
 		{
@@ -200,6 +213,18 @@ namespace AuphonicNet
 		/// 
 		/// </summary>
 		/// <returns></returns>
+		public Preset GetPreset(string uuid)
+		{
+			CheckAuthentication();
+			Preset preset = _service.GetPreset(_token, uuid);
+
+			return preset;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public List<Preset> GetPresets()
 		{
 			return GetPresets(0, 0);
@@ -224,9 +249,9 @@ namespace AuphonicNet
 		public List<Preset> GetPresets(int limit, int offset)
 		{
 			CheckAuthentication();
-			List<Preset> productions = _service.GetPresets(_token, limit, offset);
+			List<Preset> presets = _service.GetPresets(_token, limit, offset);
 
-			return productions;
+			return presets;
 		}
 
 		/// <summary>
@@ -239,6 +264,31 @@ namespace AuphonicNet
 			List<string> presets = _service.GetPresetsUuids(_token);
 
 			return presets;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public List<Service> GetServices()
+		{
+			CheckAuthentication();
+			List<Service> services = _service.GetServices(_token);
+
+			return services;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="uuid"></param>
+		/// <returns></returns>
+		public List<string> GetServiceFiles(string uuid)
+		{
+			CheckAuthentication();
+			List<string> files = _service.GetServiceFiles(_token, uuid);
+
+			return files;
 		}
 		#endregion
 

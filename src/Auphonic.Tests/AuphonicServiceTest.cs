@@ -247,6 +247,39 @@ namespace AuphonicNet.Tests
 
 		#region Tests - Productions
 		[Test]
+		public void GetProduction_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetProduction(null, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetProduction_With_Null_Parameter_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetProduction(Token, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void GetProduction_With_Empty_Parameter_Throws_ArgumentException()
+		{
+			Assert.That(() => _auphonicService.GetProduction(Token, ""), Throws
+				.InstanceOf<ArgumentException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void GetProduction_Returns_Valid_Result()
+		{
+			Production production = null;
+
+			Assert.That(() => production = _auphonicService.GetProduction(Token, "uuid"), Throws.Nothing);
+			Assert.That(production, Is.Not.Null);
+		}
+
+		[Test]
 		public void GetProductions_With_Null_Token_Throws_ArgumentNullException()
 		{
 			Assert.That(() => _auphonicService.GetProductions(null), Throws
@@ -275,6 +308,34 @@ namespace AuphonicNet.Tests
 		}
 
 		[Test]
+		public void GetProductionsUuids_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetProductionsUuids(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetProductions_With_Limit_Returns_Valid_Result()
+		{
+			List<Production> productions = null;
+
+			Assert.That(() => productions = _auphonicService.GetProductions(Token, 1), Throws.Nothing);
+			Assert.That(productions, Is.Not.Null);
+			Assert.That(productions.Count, Is.GreaterThan(0));
+		}
+
+		[Test]
+		public void GetProductions_With_Limit_And_Offset_Returns_Valid_Result()
+		{
+			List<Production> productions = null;
+
+			Assert.That(() => productions = _auphonicService.GetProductions(Token, 1, 1), Throws.Nothing);
+			Assert.That(productions, Is.Not.Null);
+			Assert.That(productions.Count, Is.GreaterThan(0));
+		}
+
+		[Test]
 		public void GetProductions_Returns_Valid_Result()
 		{
 			List<Production> productions = null;
@@ -282,14 +343,6 @@ namespace AuphonicNet.Tests
 			Assert.That(() => productions = _auphonicService.GetProductions(Token), Throws.Nothing);
 			Assert.That(productions, Is.Not.Null);
 			Assert.That(productions.Count, Is.GreaterThan(0));
-		}
-
-		[Test]
-		public void GetProductionsUuids_With_Null_Token_Throws_ArgumentNullException()
-		{
-			Assert.That(() => _auphonicService.GetProductionsUuids(null), Throws
-				.InstanceOf<ArgumentNullException>()
-				.And.Property("ParamName").EqualTo("token"));
 		}
 
 		[Test]
@@ -303,7 +356,40 @@ namespace AuphonicNet.Tests
 		}
 		#endregion
 
-		#region Tests
+		#region Tests - Presets
+		[Test]
+		public void GetPreset_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetPreset(null, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetPreset_With_Null_Parameter_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetPreset(Token, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void GetPreset_With_Empty_Parameter_Throws_ArgumentException()
+		{
+			Assert.That(() => _auphonicService.GetPreset(Token, ""), Throws
+				.InstanceOf<ArgumentException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void GetPreset_Returns_Valid_Result()
+		{
+			Preset preset = null;
+
+			Assert.That(() => preset = _auphonicService.GetPreset(Token, "uuid"), Throws.Nothing);
+			Assert.That(preset, Is.Not.Null);
+		}
+
 		[Test]
 		public void GetPresets_With_Null_Token_Throws_ArgumentNullException()
 		{
@@ -333,6 +419,14 @@ namespace AuphonicNet.Tests
 		}
 
 		[Test]
+		public void GetPresetsUuids_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetPresetsUuids(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
 		public void GetPresets_Returns_Valid_Result()
 		{
 			List<Preset> presets = null;
@@ -343,11 +437,23 @@ namespace AuphonicNet.Tests
 		}
 
 		[Test]
-		public void GetPresetsUuids_With_Null_Token_Throws_ArgumentNullException()
+		public void GetPresets_With_Limit_Returns_Valid_Result()
 		{
-			Assert.That(() => _auphonicService.GetPresetsUuids(null), Throws
-				.InstanceOf<ArgumentNullException>()
-				.And.Property("ParamName").EqualTo("token"));
+			List<Preset> presets = null;
+
+			Assert.That(() => presets = _auphonicService.GetPresets(Token, 1), Throws.Nothing);
+			Assert.That(presets, Is.Not.Null);
+			Assert.That(presets.Count, Is.GreaterThan(0));
+		}
+
+		[Test]
+		public void GetPresets_With_Limit_And_Offset_Returns_Valid_Result()
+		{
+			List<Preset> presets = null;
+
+			Assert.That(() => presets = _auphonicService.GetPresets(Token, 1, 1), Throws.Nothing);
+			Assert.That(presets, Is.Not.Null);
+			Assert.That(presets.Count, Is.GreaterThan(0));
 		}
 
 		[Test]
@@ -358,6 +464,58 @@ namespace AuphonicNet.Tests
 			Assert.That(() => presetsUudis = _auphonicService.GetPresetsUuids(Token), Throws.Nothing);
 			Assert.That(presetsUudis, Is.Not.Null);
 			Assert.That(presetsUudis.Count, Is.GreaterThan(0));
+		}
+		#endregion
+
+		#region Tests - Services
+		[Test]
+		public void GetServices_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetServices(null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetServices_Returns_Valid_Result()
+		{
+			List<Service> services = null;
+
+			Assert.That(() => services = _auphonicService.GetServices(Token), Throws.Nothing);
+			Assert.That(services, Is.Not.Null);
+		}
+
+		[Test]
+		public void GetServiceFiles_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetServiceFiles(null, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void GetServiceFiles_With_Null_Parameters_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.GetServiceFiles(Token, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void GetServiceFiles_With_Empty_Parameter_Throws_ArgumentException()
+		{
+			Assert.That(() => _auphonicService.GetServiceFiles(Token, null), Throws
+				.InstanceOf<ArgumentException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void GetServiceFiles_Returns_Valid_Result()
+		{
+			List<string> files = null;
+
+			Assert.That(() => files = _auphonicService.GetServiceFiles(Token, "uuid"), Throws.Nothing);
+			Assert.That(files, Is.Not.Null);
 		}
 		#endregion
 	}
