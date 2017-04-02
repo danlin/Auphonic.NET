@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Response.cs" />
+    <Compile Include="Api\SnakeJsonSerializerStrategy.cs" />
     <Compile Include="Auphonic.cs" />
     <Compile Include="AuphonicException.cs" />
     <Compile Include="AuphonicService.cs" />

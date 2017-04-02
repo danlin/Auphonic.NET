@@ -25,6 +25,9 @@ namespace AuphonicNet.Tests.Mock
 
 		public const string AccessToken = "436bfd6bed";
 		public const string InvalidAccessToken = "abcdefghi";
+
+		public const string ValidUuid = "gTZa9CPNqDrSTeufve2A6D";
+		public const string InvalidUuid = "Svia3HLsrcHAatUX7bYwsN";
 		#endregion
 
 		#region Protected Constants
@@ -95,11 +98,15 @@ namespace AuphonicNet.Tests.Mock
 			ClientMock.Setup(c => c.Execute<Response<Production>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Production)))).Returns(() => GetProductionResponse());
 			ClientMock.Setup(c => c.Execute<Response<List<Production>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Productions)))).Returns(() => GetProductionsResponse());
 			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ProductionsUuids)))).Returns(() => GetUuidsResponse());
+			ClientMock.Setup(c => c.Execute<Response<object>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.DeleteNotFoundProduction)))).Returns(() => GetDeleteNotFoundResponse());
+			ClientMock.Setup(c => c.Execute<Response<object>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.DeleteSuccessProduction)))).Returns(() => GetDeleteSuccessResponse());
 
 			// Presets
 			ClientMock.Setup(c => c.Execute<Response<Preset>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Preset)))).Returns(() => GetPresetResponse());
 			ClientMock.Setup(c => c.Execute<Response<List<Preset>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Presets)))).Returns(() => GetPresetsResponse());
 			ClientMock.Setup(c => c.Execute<Response<List<string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.PresetsUuids)))).Returns(() => GetUuidsResponse());
+			ClientMock.Setup(c => c.Execute<Response<object>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.DeleteNotFoundPreset)))).Returns(() => GetDeleteNotFoundResponse());
+			ClientMock.Setup(c => c.Execute<Response<object>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.DeleteSuccessPreset)))).Returns(() => GetDeleteSuccessResponse());
 
 			// Services
 			ClientMock.Setup(c => c.Execute<Response<List<Service>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Services)))).Returns(() => GetServicesResponse());
@@ -208,6 +215,17 @@ namespace AuphonicNet.Tests.Mock
 					break;
 				case RequestType.Presets:
 					result = IsValidPresetsRequest(request);
+					break;
+
+				// Delete
+				case RequestType.DeleteNotFoundPreset:
+				case RequestType.DeleteNotFoundProduction:
+					result = IsDeleteRequest(request, InvalidUuid);
+					break;
+
+				case RequestType.DeleteSuccessPreset:
+				case RequestType.DeleteSuccessProduction:
+					result = IsDeleteRequest(request, ValidUuid);
 					break;
 
 				// Uuids only
@@ -334,6 +352,19 @@ namespace AuphonicNet.Tests.Mock
 
 			bool isValid = request.Resource == "api/presets.json" &&
 				uuidsOnly?.Value != (object)1 &&
+				authenticator?.AccessToken == AccessToken;
+
+			return isValid;
+		}
+
+		private bool IsDeleteRequest(IRestRequest request, string uuid)
+		{
+			var authenticator = (OAuth2AuthorizationRequestHeaderAuthenticator)Client.Authenticator;
+			var uuidParam = request.Parameters.Find(p => p.Name == "uuid");
+
+			bool isValid = (request.Resource == "api/production/{uuid}.json" || request.Resource == "api/preset/{uuid}.json") &&
+				request.Method == Method.DELETE &&
+				(string)uuidParam?.Value == uuid &&
 				authenticator?.AccessToken == AccessToken;
 
 			return isValid;
@@ -492,6 +523,16 @@ namespace AuphonicNet.Tests.Mock
 		private IRestResponse<Response<List<string>>> GetServiceFilesResponse()
 		{
 			return GetResponse<List<string>>("json/service_files.json");
+		}
+
+		private IRestResponse<Response<object>> GetDeleteNotFoundResponse()
+		{
+			return GetResponse<object>("json/delete_not_found.json");
+		}
+
+		private IRestResponse<Response<object>> GetDeleteSuccessResponse()
+		{
+			return GetResponse<object>("json/delete_success.json");
 		}
 		#endregion
 	}

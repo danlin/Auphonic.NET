@@ -25,9 +25,13 @@
 		Production,
 		Productions,
 		ProductionsUuids,
+		DeleteNotFoundProduction,
+		DeleteSuccessProduction,
 		Preset,
 		Presets,
 		PresetsUuids,
+		DeleteNotFoundPreset,
+		DeleteSuccessPreset,
 
 		Services,
 		ServiceFiles,

@@ -18,7 +18,7 @@ namespace AuphonicNet.Classes
 
 		public bool SplitOnChapters { get; set; }
 
-		public int Bitrate { get; set; }
+		public string Bitrate { get; set; }
 
 		public bool MonoMixdown { get; set; }
 

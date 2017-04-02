@@ -88,7 +88,7 @@ namespace AuphonicNet.Classes
 		public Statistics Statistics { get; set; }
 		#endregion
 
-		#region Internal Methods
+		#region Internal Properties
 		public bool ResetData { get; set; }
 		#endregion
 
@@ -98,6 +98,14 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public Production()
 		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Production"/> class.
+		/// </summary>
+		public Production(Metadata metadata)
+		{
+			Metadata = metadata;
 		}
 		#endregion
 	}

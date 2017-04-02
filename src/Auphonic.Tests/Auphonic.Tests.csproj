@@ -59,6 +59,12 @@
     <None Include="json\auth_invalid_token.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="json\delete_not_found.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="json\delete_success.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="json\file_endings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

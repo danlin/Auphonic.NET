@@ -247,6 +247,45 @@ namespace AuphonicNet.Tests
 
 		#region Tests - Productions
 		[Test]
+		public void DeleteProduction_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.DeleteProduction(null, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void DeleteProduction_With_Null_Uuid_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.DeleteProduction(Token, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void DeleteProduction_With_Empty_Uuid_Throws_ArgumentException()
+		{
+			Assert.That(() => _auphonicService.DeleteProduction(Token, ""), Throws
+				.InstanceOf<ArgumentException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void DeleteProduction_With_Invalid_Uuid_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonicService.DeleteProduction(Token, InvalidUuid), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo(null)
+				.And.Property("ErrorMessage").EqualTo("Not Found"));
+		}
+
+		[Test]
+		public void DeleteProduction_With_Valid_Uuid_Throws_Nothing()
+		{
+			Assert.That(() => _auphonicService.DeleteProduction(Token, ValidUuid), Throws.Nothing);
+		}
+
+		[Test]
 		public void GetProduction_With_Null_Token_Throws_ArgumentNullException()
 		{
 			Assert.That(() => _auphonicService.GetProduction(null, null), Throws
@@ -357,6 +396,45 @@ namespace AuphonicNet.Tests
 		#endregion
 
 		#region Tests - Presets
+		[Test]
+		public void DeletePreset_With_Null_Token_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.DeletePreset(null, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("token"));
+		}
+
+		[Test]
+		public void DeletePreset_With_Null_Uuid_Throws_ArgumentNullException()
+		{
+			Assert.That(() => _auphonicService.DeletePreset(Token, null), Throws
+				.InstanceOf<ArgumentNullException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void DeletePreset_With_Empty_Uuid_Throws_ArgumentException()
+		{
+			Assert.That(() => _auphonicService.DeletePreset(Token, ""), Throws
+				.InstanceOf<ArgumentException>()
+				.And.Property("ParamName").EqualTo("uuid"));
+		}
+
+		[Test]
+		public void DeletePreset_With_Invalid_Uuid_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonicService.DeletePreset(Token, InvalidUuid), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo(null)
+				.And.Property("ErrorMessage").EqualTo("Not Found"));
+		}
+
+		[Test]
+		public void DeletePreset_With_Valid_Uuid_Throws_Nothing()
+		{
+			Assert.That(() => _auphonicService.DeletePreset(Token, ValidUuid), Throws.Nothing);
+		}
+
 		[Test]
 		public void GetPreset_With_Null_Token_Throws_ArgumentNullException()
 		{
@@ -518,5 +596,7 @@ namespace AuphonicNet.Tests
 			Assert.That(files, Is.Not.Null);
 		}
 		#endregion
+
+
 	}
 }

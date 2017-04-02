@@ -1,0 +1,9 @@
+﻿{
+  "status_code": 200,
+  "form_errors": {},
+  "error_code": null,
+  "error_message": "",
+  "data": {
+    "type": "success"
+  }
+}

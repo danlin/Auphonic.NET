@@ -1,5 +1,6 @@
 ﻿using AuphonicNet.Api;
 using AuphonicNet.Classes;
+using AuphonicNet.Extensions;
 using AuphonicNet.OAuth;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -39,6 +40,8 @@ namespace AuphonicNet
 			Precondition.IsNotNull(client, nameof(client));
 
 			_client = client;
+
+			SimpleJson.CurrentJsonSerializerStrategy = new SnakeJsonSerializerStrategy();
 		}
 		#endregion
 
@@ -67,6 +70,38 @@ namespace AuphonicNet
 			OAuthToken token = ExecuteRequest(request, clientId, clientSecret);
 
 			return token;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="uuid"></param>
+		public void DeletePreset(OAuthToken token, string uuid)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/preset/{uuid}.json", Method.DELETE);
+			request.AddUrlSegment("uuid", uuid);
+
+			ExecuteRequest<object>(request, token);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="token"></param>
+		/// <param name="uuid"></param>
+		public void DeleteProduction(OAuthToken token, string uuid)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/production/{uuid}.json", Method.DELETE);
+			request.AddUrlSegment("uuid", uuid);
+
+			ExecuteRequest<object>(request, token);
 		}
 
 		/// <summary>
@@ -168,7 +203,7 @@ namespace AuphonicNet
 			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
 
 			IRestRequest request = new RestRequest("api/production/{uuid}.json");
-			request.AddParameter("uuid", uuid, ParameterType.UrlSegment);
+			request.AddUrlSegment("uuid", uuid);
 
 			Response<Production> response = ExecuteRequest<Production>(request, token);
 
@@ -238,7 +273,7 @@ namespace AuphonicNet
 			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
 
 			IRestRequest request = new RestRequest("api/preset/{uuid}.json");
-			request.AddParameter("uuid", uuid, ParameterType.UrlSegment);
+			request.AddUrlSegment("uuid", uuid);
 
 			Response<Preset> response = ExecuteRequest<Preset>(request, token);
 
@@ -358,7 +393,7 @@ namespace AuphonicNet
 			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
 
 			IRestRequest request = new RestRequest("api/service/{uuid}/ls.json");
-			request.AddParameter("uuid", uuid, ParameterType.UrlSegment);
+			request.AddUrlSegment("uuid", uuid);
 
 			Response<List<string>> response = ExecuteRequest<List<string>>(request, token);
 
@@ -366,155 +401,144 @@ namespace AuphonicNet
 		}
 		#endregion
 
-		#region Public Methods - Not Implemented
-		public object CreateProduction(OAuthToken token, Production production)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(production, nameof(production));
+		//#region Public Methods - Not Implemented
+		//public object CreateProduction(OAuthToken token, Production production)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(production, nameof(production));
 
-			throw new System.NotImplementedException();
-		}
+		//	throw new System.NotImplementedException();
+		//}
 
-		public object CreateProduction(OAuthToken token, Metadata metadata)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(metadata, nameof(metadata));
+		//public object CreateProduction(OAuthToken token, Metadata metadata)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(metadata, nameof(metadata));
 
-			throw new System.NotImplementedException();
-		}
+		//	IRestRequest request = new RestRequest("api/productions.json", Method.POST);
+		//	request.AddJsonBody(metadata);
 
-		public object CreateProduction(OAuthToken token, List<File> outputFiles)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(outputFiles, nameof(outputFiles));
+		//	object obj = ExecuteRequest<object>(request, token);
 
-			throw new System.NotImplementedException();
-		}
+		//	return obj;
+		//}
 
-		public object CreateProduction(OAuthToken token, List<OutgoingService> outgoingServices)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(outgoingServices, nameof(outgoingServices));
+		//public object CreateProduction(OAuthToken token, List<File> outputFiles)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(outputFiles, nameof(outputFiles));
 
-			throw new System.NotImplementedException();
-		}
+		//	throw new System.NotImplementedException();
+		//}
 
-		public object CreateProduction(OAuthToken token, List<Algorithm> algorithms)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(algorithms, nameof(algorithms));
+		//public object CreateProduction(OAuthToken token, List<OutgoingService> outgoingServices)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(outgoingServices, nameof(outgoingServices));
 
-			throw new System.NotImplementedException();
-		}
+		//	throw new System.NotImplementedException();
+		//}
 
-		public object CreateProduction(OAuthToken token, List<Chapter> chapters)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(chapters, nameof(chapters));
+		//public object CreateProduction(OAuthToken token, Algorithms algorithms)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(algorithms, nameof(algorithms));
 
-			throw new System.NotImplementedException();
-		}
+		//	throw new System.NotImplementedException();
+		//}
 
-		public object CreateProduction(OAuthToken token, List<MultiInputFile> multiInputFiles)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(multiInputFiles, nameof(multiInputFiles));
+		//public object CreateProduction(OAuthToken token, List<Chapter> chapters)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(chapters, nameof(chapters));
 
-			throw new System.NotImplementedException();
-		}
+		//	throw new System.NotImplementedException();
+		//}
 
-		public object UpdateProduction(OAuthToken token, Production production)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(production, nameof(production));
+		//public object CreateProduction(OAuthToken token, List<MultiInputFile> multiInputFiles)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(multiInputFiles, nameof(multiInputFiles));
 
-			production.ResetData = true;
+		//	throw new System.NotImplementedException();
+		//}
 
-			throw new System.NotImplementedException();
-		}
+		//public object UpdateProduction(OAuthToken token, Production production)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(production, nameof(production));
 
-		public object DeleteProduction(OAuthToken token, string uuid)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+		//	production.ResetData = true;
 
-			throw new System.NotImplementedException();
-		}
+		//	throw new System.NotImplementedException();
+		//}
 
-		public object CreatePreset(OAuthToken token, Preset preset)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(preset, nameof(preset));
+		//public object UpdatePreset(OAuthToken token, Preset preset)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(preset, nameof(preset));
 
-			throw new System.NotImplementedException();
-		}
+		//	preset.ResetData = true;
 
-		public object CreatePreset(OAuthToken token, Metadata metadata)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(metadata, nameof(metadata));
+		//	throw new System.NotImplementedException();
+		//}
+		//#endregion
 
-			throw new System.NotImplementedException();
-		}
+		//#region At Work
+		//public Preset CreatePreset(OAuthToken token, Preset preset)
+		//{
+		//	Precondition.IsNotNull(token, nameof(token));
+		//	Precondition.IsNotNull(preset, nameof(preset));
 
-		public object CreatePreset(OAuthToken token, List<File> outputFiles)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(outputFiles, nameof(outputFiles));
+		//	IRestRequest request = new RestRequest("api/presets.json", Method.POST);
+		//	request.RequestFormat = DataFormat.Json;
+		//	request.AddBody(preset);
 
-			throw new System.NotImplementedException();
-		}
+		//	Response<Preset> response = ExecuteRequest<Preset>(request, token);
 
-		public object CreatePreset(OAuthToken token, List<OutgoingService> outgoingServices)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(outgoingServices, nameof(outgoingServices));
+		//	return response.Data;
+		//}
 
-			throw new System.NotImplementedException();
-		}
+		//public Preset CreatePreset(OAuthToken token, string name, Metadata metadata)
+		//{
+		//	Preset preset = new Preset(name, metadata);
+		//	Preset result = CreatePreset(token, preset);
 
-		public object CreatePreset(OAuthToken token, List<Algorithm> algorithms)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(algorithms, nameof(algorithms));
+		//	return result;
+		//}
 
-			throw new System.NotImplementedException();
-		}
+		//public Preset CreatePreset(OAuthToken token, string name, List<File> outputFiles)
+		//{
+		//	Preset preset = new Preset(name, outputFiles);
+		//	Preset result = CreatePreset(token, preset);
 
-		public object CreatePreset(OAuthToken token, List<Chapter> chapters)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(chapters, nameof(chapters));
+		//	return result;
+		//}
 
-			throw new System.NotImplementedException();
-		}
+		//public Preset CreatePreset(OAuthToken token, string name, List<OutgoingService> outgoingServices)
+		//{
+		//	Preset preset = new Preset(name, outgoingServices);
+		//	Preset result = CreatePreset(token, preset);
 
-		public object CreatePreset(OAuthToken token, List<MultiInputFile> multiInputFiles)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(multiInputFiles, nameof(multiInputFiles));
+		//	return result;
+		//}
 
-			throw new System.NotImplementedException();
-		}
+		//public Preset CreatePreset(OAuthToken token, string name, Algorithms algorithms)
+		//{
+		//	Preset preset = new Preset(name, algorithms);
+		//	Preset result = CreatePreset(token, preset);
 
-		public object UpdatePreset(OAuthToken token, Preset preset)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNull(preset, nameof(preset));
+		//	return result;
+		//}
 
-			preset.ResetData = true;
+		//public Preset CreatePreset(OAuthToken token, string name, List<MultiInputFile> multiInputFiles)
+		//{
+		//	Preset preset = new Preset(name, multiInputFiles);
+		//	Preset result = CreatePreset(token, preset);
 
-			throw new System.NotImplementedException();
-		}
-
-		public object DeletePreset(OAuthToken token, string uuid)
-		{
-			Precondition.IsNotNull(token, nameof(token));
-			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
-
-			throw new System.NotImplementedException();
-		}
-		#endregion
+		//	return result;
+		//}
+		//#endregion
 
 		#region Private Methods
 		private Response<T> ExecuteRequest<T>(IRestRequest request) where T : new()
@@ -567,7 +591,8 @@ namespace AuphonicNet
 
 		private void ProcessResponse<T>(IRestResponse<Response<T>> response) where T : new()
 		{
-			if (response.StatusCode == HttpStatusCode.InternalServerError)
+			if (!response.Data.ErrorCode.IsNullOrWhiteSpace() ||
+				!response.Data.ErrorMessage.IsNullOrWhiteSpace())
 			{
 				throw new AuphonicException(response.Data.ErrorCode, response.Data.ErrorMessage);
 			}

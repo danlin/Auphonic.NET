@@ -204,6 +204,23 @@ namespace AuphonicNet.Tests
 
 		#region Tests - Productions
 		[Test]
+		public void DeleteProduction_Without_Authentication_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonic.DeleteProduction(ValidUuid), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo("")
+				.And.Property("ErrorMessage").EqualTo(MessageNoCredentials));
+		}
+
+		[Test]
+		public void DeleteProduction_With_Authentication_Throws_Nothing()
+		{
+			_auphonic.Authenticate(AccessToken);
+
+			Assert.That(() => _auphonic.DeleteProduction(ValidUuid), Throws.Nothing);
+		}
+
+		[Test]
 		public void GetProduction_Without_Authentication_Throws_AuphonicException()
 		{
 			Assert.That(() => _auphonic.GetProduction(null), Throws
@@ -300,6 +317,23 @@ namespace AuphonicNet.Tests
 		#endregion
 
 		#region Tests - Presets
+		[Test]
+		public void DeletePreset_Without_Authentication_Throws_AuphonicException()
+		{
+			Assert.That(() => _auphonic.DeletePreset(ValidUuid), Throws
+				.InstanceOf<AuphonicException>()
+				.And.Property("ErrorCode").EqualTo("")
+				.And.Property("ErrorMessage").EqualTo(MessageNoCredentials));
+		}
+
+		[Test]
+		public void DeletePreset_With_Authentication_Throws_Nothing()
+		{
+			_auphonic.Authenticate(AccessToken);
+
+			Assert.That(() => _auphonic.DeletePreset(ValidUuid), Throws.Nothing);
+		}
+
 		[Test]
 		public void GetPreset_Without_Authentication_Throws_AuphonicException()
 		{
