@@ -43,6 +43,8 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public Account()
 		{
+			DateJoined = DateTime.MinValue;
+			RechargeDate = DateTime.MinValue;
 		}
 		#endregion
 	}

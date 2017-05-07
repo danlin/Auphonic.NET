@@ -10,8 +10,14 @@ namespace AuphonicNet
 	public class Auphonic
 	{
 		#region Public Properties
+		/// <summary>
+		/// 
+		/// </summary>
 		public string ClientId { get; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public string ClientSecret { get; }
 		#endregion
 
@@ -77,6 +83,32 @@ namespace AuphonicNet
 			Precondition.IsNotNullOrWhiteSpace(accessToken, nameof(accessToken));
 
 			_token = new OAuthToken(accessToken);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="preset"></param>
+		/// <returns></returns>
+		public Preset CreatePreset(Preset preset)
+		{
+			CheckAuthentication();
+			Preset obj = _service.CreatePreset(_token, preset);
+
+			return obj;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="production"></param>
+		/// <returns></returns>
+		public Production CreateProduction(Production production)
+		{
+			CheckAuthentication();
+			Production obj = _service.CreateProduction(_token, production);
+
+			return obj;
 		}
 
 		/// <summary>
@@ -310,129 +342,60 @@ namespace AuphonicNet
 
 			return files;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="uuid"></param>
+		/// <returns></returns>
+		public Production StartProduction(string uuid)
+		{
+			CheckAuthentication();
+			Production obj = _service.StartProduction(_token, uuid);
+
+			return obj;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="preset"></param>
+		/// <returns></returns>
+		public Preset UpdatePreset(Preset preset)
+		{
+			CheckAuthentication();
+			Preset obj = _service.UpdatePreset(_token, preset);
+
+			return obj;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="production"></param>
+		/// <returns></returns>
+		public Production UpdateProduction(Production production)
+		{
+			CheckAuthentication();
+			Production obj = _service.UpdateProduction(_token, production);
+
+			return obj;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="uuid"></param>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public Production UploadFile(string uuid, string path)
+		{
+			CheckAuthentication();
+			Production obj = _service.UploadFile(_token, uuid, path);
+
+			return obj;
+		}
 		#endregion
-
-		//#region Public Methods - Not Implemented
-		//public object CreateProduction(Production production)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, production);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(Metadata metadata)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, metadata);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(List<File> outputFiles)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, outputFiles);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(List<OutgoingService> outgoingServices)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, outgoingServices);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(Algorithms algorithms)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, algorithms);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(List<Chapter> chapters)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, chapters);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(List<MultiInputFile> multiInputFiles)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.CreateProduction(_token, multiInputFiles);
-
-		//	return obj;
-		//}
-
-		//public object UpdateProduction(Production production)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.UpdateProduction(_token, production);
-
-		//	return obj;
-		//}
-
-		//public Preset CreatePreset(Preset preset)
-		//{
-		//	CheckAuthentication();
-		//	Preset obj = _service.CreatePreset(_token, preset);
-
-		//	return obj;
-		//}
-
-		//public Preset CreatePreset(string name, Metadata metadata)
-		//{
-		//	CheckAuthentication();
-		//	Preset obj = _service.CreatePreset(_token, name, metadata);
-
-		//	return obj;
-		//}
-
-		//public Preset CreatePreset(string name, List<File> outputFiles)
-		//{
-		//	CheckAuthentication();
-		//	Preset obj = _service.CreatePreset(_token, name, outputFiles);
-
-		//	return obj;
-		//}
-
-		//public Preset CreatePreset(string name, List<OutgoingService> outgoingServices)
-		//{
-		//	CheckAuthentication();
-		//	Preset obj = _service.CreatePreset(_token, name, outgoingServices);
-
-		//	return obj;
-		//}
-
-		//public Preset CreatePreset(string name, Algorithms algorithms)
-		//{
-		//	CheckAuthentication();
-		//	Preset obj = _service.CreatePreset(_token, name, algorithms);
-
-		//	return obj;
-		//}
-
-		//public Preset CreatePreset(string name, List<MultiInputFile> multiInputFiles)
-		//{
-		//	CheckAuthentication();
-		//	Preset obj = _service.CreatePreset(_token, name, multiInputFiles);
-
-		//	return obj;
-		//}
-
-		//public object UpdatePreset(Preset preset)
-		//{
-		//	CheckAuthentication();
-		//	object obj = _service.UpdatePreset(_token, preset);
-
-		//	return obj;
-		//}
-		//#endregion
 
 		#region Private Methods
 		private void CheckAuthentication()

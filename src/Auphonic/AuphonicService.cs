@@ -46,14 +46,6 @@ namespace AuphonicNet
 		#endregion
 
 		#region Public Methods
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="clientId"></param>
-		/// <param name="clientSecret"></param>
-		/// <param name="username"></param>
-		/// <param name="password"></param>
-		/// <returns></returns>
 		public OAuthToken Authenticate(string clientId, string clientSecret, string username, string password)
 		{
 			Precondition.IsNotNullOrWhiteSpace(clientId, nameof(clientId));
@@ -72,11 +64,32 @@ namespace AuphonicNet
 			return token;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="uuid"></param>
+		public Preset CreatePreset(OAuthToken token, Preset preset)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNull(preset, nameof(preset));
+
+			IRestRequest request = new RestRequest("api/preset.json", Method.POST);
+			request.AddBody(preset);
+
+			Response<Preset> response = ExecuteRequest<Preset>(request, token);
+
+			return response.Data;
+		}
+
+		public Production CreateProduction(OAuthToken token, Production production)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNull(production, nameof(production));
+
+			IRestRequest request = new RestRequest("api/production.json", Method.POST);
+			request.AddBody(production);
+
+			Response<Production> response = ExecuteRequest<Production>(request, token);
+
+			return response.Data;
+		}
+
 		public void DeletePreset(OAuthToken token, string uuid)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -88,11 +101,6 @@ namespace AuphonicNet
 			ExecuteRequest<object>(request, token);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="uuid"></param>
 		public void DeleteProduction(OAuthToken token, string uuid)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -104,11 +112,6 @@ namespace AuphonicNet
 			ExecuteRequest<object>(request, token);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <returns></returns>
 		public Account GetAccountInfo(OAuthToken token)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -119,10 +122,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Dictionary<string, Algorithm> GetAlgorithms()
 		{
 			IRestRequest request = new RestRequest("api/info/algorithms.json");
@@ -131,10 +130,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Dictionary<string, List<string>> GetFileEndings()
 		{
 			IRestRequest request = new RestRequest("api/info/file_endings.json");
@@ -143,10 +138,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Dictionary<string, OutputFile> GetOutputFiles()
 		{
 			IRestRequest request = new RestRequest("api/info/output_files.json");
@@ -155,10 +146,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Dictionary<string, string> GetProductionStatus()
 		{
 			IRestRequest request = new RestRequest("api/info/production_status.json");
@@ -167,10 +154,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Dictionary<string, ServiceType> GetServiceTypes()
 		{
 			IRestRequest request = new RestRequest("api/info/service_types.json");
@@ -179,10 +162,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
 		public Info GetInfo()
 		{
 			IRestRequest request = new RestRequest("api/info.json");
@@ -191,12 +170,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="uuid"></param>
-		/// <returns></returns>
 		public Production GetProduction(OAuthToken token, string uuid)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -210,34 +183,16 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <returns></returns>
 		public List<Production> GetProductions(OAuthToken token)
 		{
 			return GetProductions(token, 0, 0);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="limit"></param>
-		/// <returns></returns>
 		public List<Production> GetProductions(OAuthToken token, int limit)
 		{
 			return GetProductions(token, limit, 0);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="limit"></param>
-		/// <param name="offset"></param>
-		/// <returns></returns>
 		public List<Production> GetProductions(OAuthToken token, int limit, int offset)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -261,12 +216,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="uuid"></param>
-		/// <returns></returns>
 		public Preset GetPreset(OAuthToken token, string uuid)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -280,34 +229,16 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <returns></returns>
 		public List<Preset> GetPresets(OAuthToken token)
 		{
 			return GetPresets(token, 0, 0);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="limit"></param>
-		/// <returns></returns>
 		public List<Preset> GetPresets(OAuthToken token, int limit)
 		{
 			return GetPresets(token, limit, 0);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="limit"></param>
-		/// <param name="offset"></param>
-		/// <returns></returns>
 		public List<Preset> GetPresets(OAuthToken token, int limit, int offset)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -331,11 +262,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <returns></returns>
 		public List<string> GetProductionsUuids(OAuthToken token)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -348,11 +274,6 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <returns></returns>
 		public List<string> GetPresetsUuids(OAuthToken token)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -365,28 +286,16 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <returns></returns>
 		public List<Service> GetServices(OAuthToken token)
 		{
 			Precondition.IsNotNull(token, nameof(token));
 
 			IRestRequest request = new RestRequest("api/services.json");
-
 			Response<List<Service>> response = ExecuteRequest<List<Service>>(request, token);
 
 			return response.Data;
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="token"></param>
-		/// <param name="uuid"></param>
-		/// <returns></returns>
 		public List<string> GetServiceFiles(OAuthToken token, string uuid)
 		{
 			Precondition.IsNotNull(token, nameof(token));
@@ -399,146 +308,65 @@ namespace AuphonicNet
 
 			return response.Data;
 		}
+
+		public Production StartProduction(OAuthToken token, string uuid)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/production/{uuid}/start.json", Method.POST);
+			request.AddUrlSegment("uuid", uuid);
+
+			Response<Production> response = ExecuteRequest<Production>(request, token);
+
+			return response.Data;
+		}
+
+		public Preset UpdatePreset(OAuthToken token, Preset preset)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNull(preset, nameof(preset));
+			Precondition.IsNotNullOrWhiteSpace(preset.Uuid, nameof(preset.Uuid));
+
+			IRestRequest request = new RestRequest("api/preset/{uuid}.json", Method.POST);
+			request.AddUrlSegment("uuid", preset.Uuid);
+			request.AddBody(preset);
+
+			Response<Preset> response = ExecuteRequest<Preset>(request, token);
+
+			return response.Data;
+		}
+
+		public Production UpdateProduction(OAuthToken token, Production production)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNull(production, nameof(production));
+			Precondition.IsNotNullOrWhiteSpace(production.Uuid, nameof(production.Uuid));
+
+			IRestRequest request = new RestRequest("api/production/{uuid}.json", Method.POST);
+			request.AddUrlSegment("uuid", production.Uuid);
+			request.AddBody(production);
+
+			Response<Production> response = ExecuteRequest<Production>(request, token);
+
+			return response.Data;
+		}
+
+		public Production UploadFile(OAuthToken token, string uuid, string path)
+		{
+			Precondition.IsNotNull(token, nameof(token));
+			Precondition.IsNotNullOrWhiteSpace(uuid, nameof(uuid));
+
+			IRestRequest request = new RestRequest("api/production/{uuid}/upload.json", Method.POST);
+			request.AddUrlSegment("uuid", uuid);
+			request.AddFile("input_file", path);
+
+			Response<Production> response = ExecuteRequest<Production>(request, token);
+
+			return response.Data;
+
+		}
 		#endregion
-
-		//#region Public Methods - Not Implemented
-		//public object CreateProduction(OAuthToken token, Production production)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(production, nameof(production));
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object CreateProduction(OAuthToken token, Metadata metadata)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(metadata, nameof(metadata));
-
-		//	IRestRequest request = new RestRequest("api/productions.json", Method.POST);
-		//	request.AddJsonBody(metadata);
-
-		//	object obj = ExecuteRequest<object>(request, token);
-
-		//	return obj;
-		//}
-
-		//public object CreateProduction(OAuthToken token, List<File> outputFiles)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(outputFiles, nameof(outputFiles));
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object CreateProduction(OAuthToken token, List<OutgoingService> outgoingServices)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(outgoingServices, nameof(outgoingServices));
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object CreateProduction(OAuthToken token, Algorithms algorithms)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(algorithms, nameof(algorithms));
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object CreateProduction(OAuthToken token, List<Chapter> chapters)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(chapters, nameof(chapters));
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object CreateProduction(OAuthToken token, List<MultiInputFile> multiInputFiles)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(multiInputFiles, nameof(multiInputFiles));
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object UpdateProduction(OAuthToken token, Production production)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(production, nameof(production));
-
-		//	production.ResetData = true;
-
-		//	throw new System.NotImplementedException();
-		//}
-
-		//public object UpdatePreset(OAuthToken token, Preset preset)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(preset, nameof(preset));
-
-		//	preset.ResetData = true;
-
-		//	throw new System.NotImplementedException();
-		//}
-		//#endregion
-
-		//#region At Work
-		//public Preset CreatePreset(OAuthToken token, Preset preset)
-		//{
-		//	Precondition.IsNotNull(token, nameof(token));
-		//	Precondition.IsNotNull(preset, nameof(preset));
-
-		//	IRestRequest request = new RestRequest("api/presets.json", Method.POST);
-		//	request.RequestFormat = DataFormat.Json;
-		//	request.AddBody(preset);
-
-		//	Response<Preset> response = ExecuteRequest<Preset>(request, token);
-
-		//	return response.Data;
-		//}
-
-		//public Preset CreatePreset(OAuthToken token, string name, Metadata metadata)
-		//{
-		//	Preset preset = new Preset(name, metadata);
-		//	Preset result = CreatePreset(token, preset);
-
-		//	return result;
-		//}
-
-		//public Preset CreatePreset(OAuthToken token, string name, List<File> outputFiles)
-		//{
-		//	Preset preset = new Preset(name, outputFiles);
-		//	Preset result = CreatePreset(token, preset);
-
-		//	return result;
-		//}
-
-		//public Preset CreatePreset(OAuthToken token, string name, List<OutgoingService> outgoingServices)
-		//{
-		//	Preset preset = new Preset(name, outgoingServices);
-		//	Preset result = CreatePreset(token, preset);
-
-		//	return result;
-		//}
-
-		//public Preset CreatePreset(OAuthToken token, string name, Algorithms algorithms)
-		//{
-		//	Preset preset = new Preset(name, algorithms);
-		//	Preset result = CreatePreset(token, preset);
-
-		//	return result;
-		//}
-
-		//public Preset CreatePreset(OAuthToken token, string name, List<MultiInputFile> multiInputFiles)
-		//{
-		//	Preset preset = new Preset(name, multiInputFiles);
-		//	Preset result = CreatePreset(token, preset);
-
-		//	return result;
-		//}
-		//#endregion
 
 		#region Private Methods
 		private Response<T> ExecuteRequest<T>(IRestRequest request) where T : new()

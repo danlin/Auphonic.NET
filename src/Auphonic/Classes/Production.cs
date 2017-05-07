@@ -9,31 +9,39 @@ namespace AuphonicNet.Classes
 	public class Production
 	{
 		#region Public Properties
+		public List<File> OutputFiles { get; set; }
+
+		public string OutputBasename { get; set; }
+
+		public List<OutgoingService> OutgoingServices { get; set; }
+
+		public string Uuid { get; set; }
+
+		public Algorithms Algorithms { get; set; }
+
+		public string Image { get; set; }
+
+		public DateTime CreationTime { get; set; }
+
+		public string Thumbnail { get; set; }
+
+		public Metadata Metadata { get; set; }
+
+		public List<MultiInputFile> MultiInputFiles { get; set; }
+
+		public SpeechRecognition SpeechRecognition { get; set; }
+
+		public bool IsMultitrack { get; set; }
+
 		public int Status { get; set; }
 
 		public string StatusString { get; set; }
 
 		public List<Chapter> Chapters { get; set; }
 
-		public List<OutgoingService> OutgoingServices { get; set; }
-
-		public string Uuid { get; set; }
-
-		public string OutputBasename { get; set; }
-
-		public List<File> OutputFiles { get; set; }
-
-		public string Image { get; set; }
-
-		public string Thumbnail { get; set; }
-
 		public string WaveformImage { get; set; }
 
-		public DateTime CreationTime { get; set; }
-
 		public DateTime ChangeTime { get; set; }
-
-		public Algorithms Algorithms { get; set; }
 
 		public string Service { get; set; }
 
@@ -57,10 +65,6 @@ namespace AuphonicNet.Classes
 
 		public decimal CutEnd { get; set; }
 
-		public Metadata Metadata { get; set; }
-
-		public List<MultiInputFile> MultiInputFiles { get; set; }
-
 		public bool StartAllowed { get; set; }
 
 		public bool ChangeAllowed { get; set; }
@@ -77,19 +81,9 @@ namespace AuphonicNet.Classes
 
 		public string WarningMessage { get; set; }
 
-		public string Webhook { get; set; }
-
-		public bool IsMultitrack { get; set; }
-
 		public Credits UsedCredits { get; set; }
 
-		public SpeechRecognition SpeechRecognition { get; set; }
-
 		public Statistics Statistics { get; set; }
-		#endregion
-
-		#region Internal Properties
-		public bool ResetData { get; set; }
 		#endregion
 
 		#region Constructor
@@ -98,14 +92,8 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public Production()
 		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Production"/> class.
-		/// </summary>
-		public Production(Metadata metadata)
-		{
-			Metadata = metadata;
+			ChangeTime = DateTime.MinValue;
+			CreationTime = DateTime.MinValue;
 		}
 		#endregion
 	}

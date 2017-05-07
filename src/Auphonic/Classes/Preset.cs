@@ -46,76 +46,16 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public Preset()
 		{
+			CreationTime = DateTime.MinValue;
 		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Preset"/> class.
 		/// </summary>
-		/// <param name="presetName"></param>
-		/// <param name="algorithms"></param>
-		public Preset(string presetName, Algorithms algorithms)
+		public Preset(string presetName)
+			: base()
 		{
-			Precondition.IsNotNullOrWhiteSpace(presetName, nameof(presetName));
-			Precondition.IsNotNull(algorithms, nameof(algorithms));
-
 			PresetName = presetName;
-			Algorithms = algorithms;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Preset"/> class.
-		/// </summary>
-		/// <param name="presetName"></param>
-		/// <param name="outputFiles"></param>
-		public Preset(string presetName, List<File> outputFiles)
-		{
-			Precondition.IsNotNullOrWhiteSpace(presetName, nameof(presetName));
-			Precondition.IsNotNull(outputFiles, nameof(outputFiles));
-
-			PresetName = presetName;
-			OutputFiles = outputFiles;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Preset"/> class.
-		/// </summary>
-		/// <param name="presetName"></param>
-		/// <param name="multiInputFiles"></param>
-		public Preset(string presetName, List<MultiInputFile> multiInputFiles)
-		{
-			Precondition.IsNotNullOrWhiteSpace(presetName, nameof(presetName));
-			Precondition.IsNotNull(multiInputFiles, nameof(multiInputFiles));
-
-			PresetName = presetName;
-			MultiInputFiles = multiInputFiles;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Preset"/> class.
-		/// </summary>
-		/// <param name="presetName"></param>
-		/// <param name="outgoingServices"></param>
-		public Preset(string presetName, List<OutgoingService> outgoingServices)
-		{
-			Precondition.IsNotNullOrWhiteSpace(presetName, nameof(presetName));
-			Precondition.IsNotNull(outgoingServices, nameof(outgoingServices));
-
-			PresetName = presetName;
-			OutgoingServices = outgoingServices;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Preset"/> class.
-		/// </summary>
-		/// <param name="presetName"></param>
-		/// <param name="metadata"></param>
-		public Preset(string presetName, Metadata metadata)
-		{
-			Precondition.IsNotNullOrWhiteSpace(presetName, nameof(presetName));
-			Precondition.IsNotNull(metadata, nameof(metadata));
-
-			PresetName = presetName;
-			Metadata = metadata;
 		}
 		#endregion
 	}
