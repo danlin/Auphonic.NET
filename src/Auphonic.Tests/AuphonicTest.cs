@@ -140,7 +140,7 @@ namespace AuphonicNet.Tests
 		[Test]
 		public void GetAlgorithms_Returns_Valid_Result()
 		{
-			Dictionary<string, Algorithm> algorithms = null;
+			Dictionary<string, AlgorithmType> algorithms = null;
 
 			Assert.That(() => algorithms = _auphonic.GetAlgorithms(), Throws.Nothing);
 			Assert.That(algorithms, Is.Not.Null);
@@ -162,7 +162,7 @@ namespace AuphonicNet.Tests
 		[Test]
 		public void GetOutputFiles_Returns_Valid_Result()
 		{
-			Dictionary<string, OutputFile> outputFiles = null;
+			Dictionary<string, OutputFileType> outputFiles = null;
 
 			Assert.That(() => outputFiles = _auphonic.GetOutputFiles(), Throws.Nothing);
 			Assert.That(outputFiles, Is.Not.Null);

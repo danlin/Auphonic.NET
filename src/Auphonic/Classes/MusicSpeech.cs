@@ -1,20 +1,35 @@
 ﻿namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="MusicSpeech"/> class.
+	/// Represents a music or speech segment.
 	/// </summary>
 	public class MusicSpeech
 	{
 		#region Public Properties
-		public string Label { get; set; }
+		/// <summary>
+		/// Gets the segment label (music, speech).
+		/// </summary>
+		public string Label { get; internal set; }
 
-		public string Start { get; set; }
+		/// <summary>
+		/// Gets the start of the segment as timestring (in HH:MM:SS.mmm).
+		/// </summary>
+		public string Start { get; internal set; }
 
-		public decimal StartSec { get; set; }
+		/// <summary>
+		/// Gets the start of the segment in seconds.
+		/// </summary>
+		public decimal StartSec { get; internal set; }
 
-		public string Stop { get; set; }
+		/// <summary>
+		/// Gets the end of the segment as timestring (in HH:MM:SS.mmm).
+		/// </summary>
+		public string Stop { get; internal set; }
 
-		public decimal StopSec { get; set; }
+		/// <summary>
+		/// Gets the end of the segment in seconds.
+		/// </summary>
+		public decimal StopSec { get; internal set; }
 		#endregion
 
 		#region Constructor
@@ -23,6 +38,14 @@
 		/// </summary>
 		public MusicSpeech()
 		{
+		}
+		#endregion
+
+		#region Public Override Methods
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return $"{Label} (Start={Start}; Stop={Stop})";
 		}
 		#endregion
 	}

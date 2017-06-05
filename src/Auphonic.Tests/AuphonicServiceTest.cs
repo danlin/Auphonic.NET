@@ -158,9 +158,9 @@ namespace AuphonicNet.Tests
 		[Test]
 		public void GetAlgorithms_Returns_Valid_Result()
 		{
-			Dictionary<string, Algorithm> algorithms = null;
+			Dictionary<string, AlgorithmType> algorithms = null;
 
-			Assert.That(() => algorithms = _auphonicService.GetAlgorithms(), Throws.Nothing);
+			Assert.That(() => algorithms = _auphonicService.GetAlgorithmType(), Throws.Nothing);
 			Assert.That(algorithms.Values.Count, Is.GreaterThan(0));
 			Assert.That(algorithms.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
 		}
@@ -182,9 +182,9 @@ namespace AuphonicNet.Tests
 		[Test]
 		public void GetOutputFiles_Returns_Valid_Result()
 		{
-			Dictionary<string, OutputFile> outputFiles = null;
+			Dictionary<string, OutputFileType> outputFiles = null;
 
-			Assert.That(() => outputFiles = _auphonicService.GetOutputFiles(), Throws.Nothing);
+			Assert.That(() => outputFiles = _auphonicService.GetOutputFileTypes(), Throws.Nothing);
 			Assert.That(outputFiles.Values.Count, Is.GreaterThan(0));
 			Assert.That(outputFiles.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
 		}
@@ -223,17 +223,17 @@ namespace AuphonicNet.Tests
 			Assert.That(() => info = _auphonicService.GetInfo(), Throws.Nothing);
 			Assert.That(info, Is.Not.Null);
 
-			Assert.That(info.Algorithms, Is.Not.Null);
-			Assert.That(info.Algorithms.Values.Count, Is.GreaterThan(0));
-			Assert.That(info.Algorithms.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+			Assert.That(info.AlgorithmTypes, Is.Not.Null);
+			Assert.That(info.AlgorithmTypes.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.AlgorithmTypes.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
 
 			Assert.That(info.FileEndings, Is.Not.Null);
 			Assert.That(info.FileEndings.Values.Count, Is.GreaterThan(0));
 			Assert.That(info.FileEndings.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
 
-			Assert.That(info.OutputFiles, Is.Not.Null);
-			Assert.That(info.OutputFiles.Values.Count, Is.GreaterThan(0));
-			Assert.That(info.OutputFiles.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
+			Assert.That(info.OutputFileTypes, Is.Not.Null);
+			Assert.That(info.OutputFileTypes.Values.Count, Is.GreaterThan(0));
+			Assert.That(info.OutputFileTypes.Values.ToList().FindAll(v => v == null).Count, Is.EqualTo(0));
 
 			Assert.That(info.ProductionStatus, Is.Not.Null);
 			Assert.That(info.ProductionStatus.Values.Count, Is.GreaterThan(0));

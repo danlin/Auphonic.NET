@@ -1,14 +1,23 @@
-﻿namespace AuphonicNet.Classes
+﻿using System;
+using System.Globalization;
+
+namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="Location"/> class.
+	/// Represents a geo location.
 	/// </summary>
 	public class Location
 	{
 		#region Public Properties
-		public string Latitude { get; set; }
+		/// <summary>
+		/// Gets the latitude.
+		/// </summary>
+		public string Latitude { get; internal set; }
 
-		public string Longitude { get; set; }
+		/// <summary>
+		/// Gets the longitude.
+		/// </summary>
+		public string Longitude { get; internal set; }
 		#endregion
 
 		#region Constructor
@@ -16,7 +25,29 @@
 		/// Initializes a new instance of the <see cref="Location"/> class.
 		/// </summary>
 		public Location()
+			: this(0, 0)
 		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Location"/> class.
+		/// </summary>
+		/// <param name="latitude">The latitude.</param>
+		/// <param name="longitude">The longitude.</param>
+		public Location(double latitude, double longitude)
+		{
+			IFormatProvider formatProvider = new CultureInfo("en-US");
+
+			Latitude = latitude.ToString("0.000", formatProvider);
+			Longitude = longitude.ToString("0.000", formatProvider);
+		}
+		#endregion
+
+		#region Public Override Methods
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return $"Latitude:{Latitude}; Longitude={Longitude}";
 		}
 		#endregion
 	}

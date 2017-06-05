@@ -20,6 +20,7 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Auphonic.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,10 +51,10 @@
     <Compile Include="AuphonicException.cs" />
     <Compile Include="AuphonicService.cs" />
     <Compile Include="Classes\Account.cs" />
-    <Compile Include="Classes\Algorithm.cs" />
+    <Compile Include="Classes\AlgorithmType.cs" />
     <Compile Include="Classes\Algorithms.cs" />
     <Compile Include="Classes\Chapter.cs" />
-    <Compile Include="Classes\File.cs" />
+    <Compile Include="Classes\OutputFile.cs" />
     <Compile Include="Classes\Info.cs" />
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\Levels.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="Classes\NoiseHumReduction.cs" />
     <Compile Include="Classes\Option.cs" />
     <Compile Include="Classes\OutgoingService.cs" />
-    <Compile Include="Classes\OutputFile.cs" />
+    <Compile Include="Classes\OutputFileType.cs" />
     <Compile Include="Classes\Parameter.cs" />
     <Compile Include="Classes\Preset.cs" />
     <Compile Include="Classes\Production.cs" />

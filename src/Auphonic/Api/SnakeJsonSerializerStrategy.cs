@@ -9,9 +9,14 @@ namespace AuphonicNet.Api
 	/// <summary>
 	/// Provides a <see cref="SnakeJsonSerializerStrategy"/> class.
 	/// </summary>
-	public class SnakeJsonSerializerStrategy : PocoJsonSerializerStrategy
+	internal class SnakeJsonSerializerStrategy : PocoJsonSerializerStrategy
 	{
 		#region Public Methods
+		public override object DeserializeObject(object value, Type type)
+		{
+			return base.DeserializeObject(value, type);
+		}
+
 		public override bool TrySerializeNonPrimitiveObject(object input, out object output)
 		{
 			bool result = base.TrySerializeNonPrimitiveObject(input, out output);

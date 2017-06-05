@@ -3,14 +3,21 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="ServiceType"/> class.
+	/// Represents a type of a service.
 	/// </summary>
 	public class ServiceType
 	{
 		#region Public Properties
-		public string DisplayName { get; set; }
+		/// <summary>
+		/// Gets the name of the service.
+		/// </summary>
+		public string DisplayName { get; internal set; }
 
-		public Dictionary<string, Parameter> Parameters { get; set; }
+		/// <summary>
+		/// Gets a collection of key/value pairs that provide additional parameters supported by
+		/// the service; otherwise <strong>null</strong>.
+		/// </summary>
+		public Dictionary<string, Parameter> Parameters { get; internal set; }
 		#endregion
 
 		#region Constructor
@@ -23,6 +30,7 @@ namespace AuphonicNet.Classes
 		#endregion
 
 		#region Public Override Methods
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			return DisplayName;

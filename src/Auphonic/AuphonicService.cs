@@ -122,10 +122,10 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		public Dictionary<string, Algorithm> GetAlgorithms()
+		public Dictionary<string, AlgorithmType> GetAlgorithmType()
 		{
 			IRestRequest request = new RestRequest("api/info/algorithms.json");
-			Response<Dictionary<string, Algorithm>> response = ExecuteRequest<Dictionary<string, Algorithm>>(request);
+			Response<Dictionary<string, AlgorithmType>> response = ExecuteRequest<Dictionary<string, AlgorithmType>>(request);
 
 			return response.Data;
 		}
@@ -138,10 +138,10 @@ namespace AuphonicNet
 			return response.Data;
 		}
 
-		public Dictionary<string, OutputFile> GetOutputFiles()
+		public Dictionary<string, OutputFileType> GetOutputFileTypes()
 		{
 			IRestRequest request = new RestRequest("api/info/output_files.json");
-			Response<Dictionary<string, OutputFile>> response = ExecuteRequest<Dictionary<string, OutputFile>>(request);
+			Response<Dictionary<string, OutputFileType>> response = ExecuteRequest<Dictionary<string, OutputFileType>>(request);
 
 			return response.Data;
 		}

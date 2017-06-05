@@ -3,16 +3,26 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="Statistics"/> class.
+	/// Represents the audio processing statistics.
 	/// </summary>
 	public class Statistics
 	{
 		#region Public Properties
-		public Levels Levels { get; set; }
+		/// <summary>
+		/// Gets processing statistics about audio levels, loudness, gain changes, peaks etc. of
+		/// input and output files.
+		/// </summary>
+		public Levels Levels { get; internal set; }
 
-		public List<MusicSpeech> MusicSpeech { get; set; }
+		/// <summary>
+		/// Gets a list of music and speech segments within the audio file (> 20 sec).
+		/// </summary>
+		public List<MusicSpeech> MusicSpeech { get; internal set; }
 
-		public List<NoiseHumReduction> NoiseHumReduction { get; set; }
+		/// <summary>
+		/// Gets a list of segments with noise and/or hum reduction.
+		/// </summary>
+		public List<NoiseHumReduction> NoiseHumReduction { get; internal set; }
 		#endregion
 
 		#region Constructor

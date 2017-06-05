@@ -1,14 +1,20 @@
 ﻿namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="Option"/> class.
+	/// Represents a option.
 	/// </summary>
 	public class Option
 	{
 		#region Public Properties
-		public string DisplayName { get; set; }
+		/// <summary>
+		/// Gets the name of the option.
+		/// </summary>
+		public string DisplayName { get; internal set; }
 
-		public string Value { get; set; }
+		/// <summary>
+		/// Gets the value of the option.
+		/// </summary>
+		public string Value { get; internal set; }
 		#endregion
 
 		#region Constructor
@@ -21,6 +27,7 @@
 		#endregion
 
 		#region Public Override Methods
+		/// <inheritdoc/>
 		public override string ToString()
 		{
 			return $"{DisplayName}={Value}";

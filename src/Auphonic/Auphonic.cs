@@ -147,9 +147,9 @@ namespace AuphonicNet
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public Dictionary<string, Algorithm> GetAlgorithms()
+		public Dictionary<string, AlgorithmType> GetAlgorithms()
 		{
-			Dictionary<string, Algorithm> algorithms = _service.GetAlgorithms();
+			Dictionary<string, AlgorithmType> algorithms = _service.GetAlgorithmType();
 			return algorithms;
 		}
 
@@ -167,9 +167,9 @@ namespace AuphonicNet
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public Dictionary<string, OutputFile> GetOutputFiles()
+		public Dictionary<string, OutputFileType> GetOutputFiles()
 		{
-			Dictionary<string, OutputFile> outputFiles = _service.GetOutputFiles();
+			Dictionary<string, OutputFileType> outputFiles = _service.GetOutputFileTypes();
 			return outputFiles;
 		}
 

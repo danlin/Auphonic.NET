@@ -77,13 +77,13 @@ namespace AuphonicNet.Tests.Mock
 			ClientMock.Setup(c => c.Execute<Response<Account>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.AccountInfoNullToken)))).Returns(() => GetNullTokenResponse<Account>());
 
 			// Algorithms
-			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, Algorithm>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Algorithms)))).Returns(() => GetAlgorithmsResponse());
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, AlgorithmType>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.Algorithms)))).Returns(() => GetAlgorithmsResponse());
 
 			// FileEndings
 			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, List<string>>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.FileEndings)))).Returns(() => GetFileEndingsResponse());
 
 			// OutputFiles
-			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, OutputFile>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.OutputFiles)))).Returns(() => GetOutputFilesResponse());
+			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, OutputFileType>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.OutputFiles)))).Returns(() => GetOutputFilesResponse());
 
 			// ProductionStatus
 			ClientMock.Setup(c => c.Execute<Response<Dictionary<string, string>>>(It.Is<IRestRequest>(r => IsRequest(r, RequestType.ProductionStatus)))).Returns(() => GetProductionStatusResponse());
@@ -460,9 +460,9 @@ namespace AuphonicNet.Tests.Mock
 			return GetResponse<Account>("json/user.json");
 		}
 
-		private IRestResponse<Response<Dictionary<string, Algorithm>>> GetAlgorithmsResponse()
+		private IRestResponse<Response<Dictionary<string, AlgorithmType>>> GetAlgorithmsResponse()
 		{
-			return GetResponse<Dictionary<string, Algorithm>>("json/algorithms.json");
+			return GetResponse<Dictionary<string, AlgorithmType>>("json/algorithms.json");
 		}
 
 		private IRestResponse<Response<Dictionary<string, List<string>>>> GetFileEndingsResponse()
@@ -470,9 +470,9 @@ namespace AuphonicNet.Tests.Mock
 			return GetResponse<Dictionary<string, List<string>>>("json/file_endings.json");
 		}
 
-		private IRestResponse<Response<Dictionary<string, OutputFile>>> GetOutputFilesResponse()
+		private IRestResponse<Response<Dictionary<string, OutputFileType>>> GetOutputFilesResponse()
 		{
-			return GetResponse<Dictionary<string, OutputFile>>("json/output_files.json");
+			return GetResponse<Dictionary<string, OutputFileType>>("json/output_files.json");
 		}
 
 		private IRestResponse<Response<Dictionary<string, string>>> GetProductionStatusResponse()
