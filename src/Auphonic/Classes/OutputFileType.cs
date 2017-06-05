@@ -3,7 +3,7 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Represents a type of a output file.
+	/// Represents a output file type.
 	/// </summary>
 	public class OutputFileType
 	{

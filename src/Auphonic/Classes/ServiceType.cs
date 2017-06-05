@@ -3,7 +3,7 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Represents a type of a service.
+	/// Represents a service type.
 	/// </summary>
 	public class ServiceType
 	{

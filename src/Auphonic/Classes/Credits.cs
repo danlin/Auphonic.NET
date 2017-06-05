@@ -1,16 +1,25 @@
 ﻿namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="Credits"/> class.
+	/// Represents credits informations used for a production.
 	/// </summary>
 	public class Credits
 	{
 		#region Public Properties
-		public decimal Onetime { get; set; }
+		/// <summary>
+		/// Gets the combined credits (onetime and recurring).
+		/// </summary>
+		public decimal Combined { get; internal set; }
 
-		public decimal Recurring { get; set; }
+		/// <summary>
+		/// Gets the onetime credits.
+		/// </summary>
+		public decimal Onetime { get; internal set; }
 
-		public decimal Combined { get; set; }
+		/// <summary>
+		/// Gets the recurring credits.
+		/// </summary>
+		public decimal Recurring { get; internal set; }
 		#endregion
 
 		#region Constructor

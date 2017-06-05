@@ -3,18 +3,18 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="SpeechRecognition"/> class.
+	/// Represents speech recognition information.
 	/// </summary>
 	public class SpeechRecognition
 	{
 		#region Public Properties
 		public List<string> Keywords { get; set; }
 
+		public string Language { get; set; }
+
 		public string Type { get; set; }
 
 		public string Uuid { get; set; }
-
-		public string Language { get; set; }
 		#endregion
 
 		#region Constructor

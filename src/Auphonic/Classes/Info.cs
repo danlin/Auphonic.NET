@@ -3,20 +3,20 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="Info"/> class.
+	/// Represents combined informations for supported values.
 	/// </summary>
 	public class Info
 	{
 		#region Public Properties
-		public Dictionary<string, OutputFile> OutputFiles { get; set; }
+		public Dictionary<string, AlgorithmType> AlgorithmTypes { get; internal set; }
 
-		public Dictionary<string, ServiceType> ServiceTypes { get; set; }
+		public Dictionary<string, List<string>> FileEndings { get; internal set; }
 
-		public Dictionary<string, string> ProductionStatus { get; set; }
+		public Dictionary<string, OutputFileType> OutputFileTypes { get; internal set; }
 
-		public Dictionary<string, Algorithm> Algorithms { get; set; }
+		public Dictionary<string, string> ProductionStatus { get; internal set; }
 
-		public Dictionary<string, List<string>> FileEndings { get; set; }
+		public Dictionary<string, ServiceType> ServiceTypes { get; internal set; }
 		#endregion
 
 		#region Constructor

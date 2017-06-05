@@ -4,7 +4,7 @@ using System.Globalization;
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Represents a geo location.
+	/// Represents a location.
 	/// </summary>
 	public class Location
 	{

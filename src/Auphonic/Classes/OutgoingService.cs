@@ -3,48 +3,48 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="OutgoingService"/> class.
+	/// Represents a outgoing service.
 	/// </summary>
 	public class OutgoingService
 	{
 		#region Public Properties
+		public string BaseUrl { get; set; }
+
+		public string Category { get; set; }
+
 		public string DisplayName { get; set; }
 
-		public string Uuid { get; set; }
+		public bool Downloadable { get; set; }
 
 		public string Email { get; set; }
 
-		public bool TransferSuccess { get; set; }
-
 		public string ErrorMessage { get; set; }
+
+		public string Host { get; set; }
 
 		public bool Incomming { get; set; }
 
 		public bool Outgoing { get; set; }
 
-		public string ResultPage { get; set; }
-
-		public List<string> ResultUrls { get; set; }
-
 		public string Path { get; set; }
-
-		public string Host { get; set; }
-
-		public string Type { get; set; }
 
 		public int Port { get; set; }
 
-		public string BaseUrl { get; set; }
+		public string Privacy { get; set; }
+
+		public string ResultPage { get; set; }
+
+		public List<string> ResultUrls { get; set; }
 
 		public string Sharing { get; set; }
 
 		public string TrackType { get; set; }
 
-		public bool Downloadable { get; set; }
+		public bool TransferSuccess { get; set; }
 
-		public string Category { get; set; }
+		public string Type { get; set; }
 
-		public string Privacy { get; set; }
+		public string Uuid { get; set; }
 		#endregion
 
 		#region Constructor

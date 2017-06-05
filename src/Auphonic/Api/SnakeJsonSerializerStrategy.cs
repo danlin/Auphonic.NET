@@ -41,54 +41,39 @@ namespace AuphonicNet.Api
 		{
 			if (output is IDictionary<string, object>)
 			{
-				IDictionary<string, object> dict = (IDictionary<string, object>)output;
 				Type type = input.GetType();
+				string[] keys = null;
+
+				if (type == typeof(OutputFile))
+				{
+					keys = new[] { "size" };
+				}
 
 				if (type == typeof(Preset))
 				{
-					CheckPreset((Preset)input, dict);
+					keys = new[] { "output_basename", "image" };
 				}
 
 				if (type == typeof(Production))
 				{
-					CheckProduction((Production)input, dict);
+					keys = new[] { "output_basename", "image", "chapters", "input_file" };
+				}
+
+				if (keys != null)
+				{
+					RemoveEmptyKey((IDictionary<string, object>)output, keys);
 				}
 			}
 		}
 
-		private void CheckPreset(Preset preset, IDictionary<string, object> output)
+		private void RemoveEmptyKey(IDictionary<string, object> output, params string[] keys)
 		{
-			if (string.IsNullOrWhiteSpace((string)output["output_basename"]))
+			foreach (string key in keys)
 			{
-				output.Remove("output_basename");
-			}
-
-			if (string.IsNullOrWhiteSpace((string)output["image"]))
-			{
-				output.Remove("image");
-			}
-		}
-
-		private void CheckProduction(Production production, IDictionary<string, object> output)
-		{
-			if (string.IsNullOrWhiteSpace((string)output["output_basename"]))
-			{
-				output.Remove("output_basename");
-			}
-
-			if (string.IsNullOrWhiteSpace((string)output["image"]))
-			{
-				output.Remove("image");
-			}
-
-			if (string.IsNullOrWhiteSpace((string)output["chapters"]))
-			{
-				output.Remove("chapters");
-			}
-
-			if (string.IsNullOrWhiteSpace((string)output["input_file"]))
-			{
-				output.Remove("input_file");
+				if (output.ContainsKey(key) && string.IsNullOrWhiteSpace((string)output[key]))
+				{
+					output.Remove(key);
+				}
 			}
 		}
 		#endregion

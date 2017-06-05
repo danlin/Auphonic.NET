@@ -3,38 +3,80 @@
 namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides a <see cref="Account"/> class.
+	/// Represents the Auphonic account.
 	/// </summary>
 	public class Account
 	{
 		#region Public Properties
-		public string UserId { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal Credits { get; internal set; }
 
-		public string Username { get; set; }
+		/// <summary>
+		/// Gets the user join date.
+		/// </summary>
+		public DateTime DateJoined { get; internal set; }
 
-		public DateTime DateJoined { get; set; }
+		/// <summary>
+		/// Gets the user email.
+		/// </summary>
+		public string Email { get; internal set; }
 
-		public string Email { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool ErrorEmail { get; internal set; }
 
-		public decimal Credits { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool LowCreditsEmail { get; internal set; }
 
-		public decimal OnetimeCredits { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal LowCreditsThreshold { get; internal set; }
 
-		public decimal RecurringCredits { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool NotificationEmail { get; internal set; }
 
-		public DateTime RechargeDate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal OnetimeCredits { get; internal set; }
 
-		public decimal RechargeRecurringCredits { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime RechargeDate { get; internal set; }
 
-		public bool NotificationEmail { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal RechargeRecurringCredits { get; internal set; }
 
-		public bool ErrorEmail { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public decimal RecurringCredits { get; internal set; }
 
-		public bool WarningEmail { get; set; }
+		/// <summary>
+		/// Gets the user ID.
+		/// </summary>
+		public string UserId { get; internal set; }
 
-		public bool LowCreditsEmail { get; set; }
+		/// <summary>
+		/// Gets the username.
+		/// </summary>
+		public string Username { get; internal set; }
 
-		public decimal LowCreditsThreshold { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool WarningEmail { get; internal set; }
 		#endregion
 
 		#region Constructor
@@ -45,6 +87,14 @@ namespace AuphonicNet.Classes
 		{
 			DateJoined = DateTime.MinValue;
 			RechargeDate = DateTime.MinValue;
+		}
+		#endregion
+
+		#region Public Override Methods
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return Username;
 		}
 		#endregion
 	}

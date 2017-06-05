@@ -1,7 +1,7 @@
 ﻿namespace AuphonicNet.Classes
 {
 	/// <summary>
-	/// Provides the Production Status enumeration.
+	/// Represents the production status enumeration.
 	/// </summary>
 	public enum ProductionStatus
 	{
