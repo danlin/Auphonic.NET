@@ -9,8 +9,7 @@ namespace AuphonicNet.Classes
 	{
 		#region Public Properties
 		/// <summary>
-		/// Audio Bitrate (all channels):
-		/// Set combined bitrate of all channels of your audio output file.
+		/// Gets or sets combined bitrate of all channels of the output file.
 		/// </summary>
 		public int Bitrate { get; set; }
 
@@ -25,29 +24,27 @@ namespace AuphonicNet.Classes
 		public string DownloadUrl { get; internal set; }
 
 		/// <summary>
-		/// Filename Ending, Extension:
-		/// Filename extension of the current output file.
+		/// Gets or sets the filename extension of the output file.
 		/// </summary>
 		public string Ending { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the filename of the output file.
 		/// </summary>
 		public string Filename { get; set; }
 
 		/// <summary>
-		/// Output File Format:
+		/// Gets or sets the format of the output file (e.g. mp3, m4a).
 		/// </summary>
 		public string Format { get; set; }
 
 		/// <summary>
-		/// Mono Mixdown:
-		/// Click here to force a mono mixdown of the current output file.
+		/// Gets or sets a value that indicates whether to force a mono mixdown of the output file.
 		/// </summary>
 		public bool MonoMixdown { get; set; }
 
 		/// <summary>
-		///  referenced outgoing file transfers
+		/// Gets or sets referenced outgoing file transfer services.
 		/// </summary>
 		public List<OutgoingService> OutgoingServices { get; set; }
 
@@ -62,16 +59,17 @@ namespace AuphonicNet.Classes
 		public string SizeString { get; internal set; }
 
 		/// <summary>
-		/// Split on Chapters:
-		/// If you have Chapter Marks, this option will split your audio in one file per chapter.
-		/// All filenames will be appended with the chapter number and packed into one ZIP output file.
+		/// Gets or sets a value that indicates whether to split the audio in one file per chapter,
+		/// if chapters are provided.
 		/// </summary>
+		/// <remarks>All filenames will be appended with the chapter number and packed into one ZIP
+		/// output file.</remarks>
 		public bool SplitOnChapters { get; set; }
 
 		/// <summary>
-		/// Filename Suffix (optional):
-		/// Suffix for filename generation of the current output file, leave empty for automatic suffix! 
+		/// Gets or sets the suffix for filename generation of the output file.
 		/// </summary>
+		/// <value>Default <strong>null</strong> for automatic suffix.</value>
 		public string Suffix { get; set; }
 		#endregion
 

@@ -19,18 +19,39 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public DateTime CreationTime { get; internal set; }
 
+		/// <summary>
+		/// Gets or sets the image.
+		/// </summary>
 		public string Image { get; set; }
 
+		/// <summary>
+		/// Gets or sets a value that indicates whether the production is multitrack.
+		/// </summary>
 		public bool IsMultitrack { get; set; }
 
+		/// <summary>
+		/// Gets or sets metadata.
+		/// </summary>
 		public Metadata Metadata { get; set; }
 
+		/// <summary>
+		/// Gets or sets multi input files.
+		/// </summary>
 		public List<MultiInputFile> MultiInputFiles { get; set; }
 
+		/// <summary>
+		/// Gets or sets outgoing services.
+		/// </summary>
 		public List<OutgoingService> OutgoingServices { get; set; }
 
+		/// <summary>
+		/// Gets or sets the output file basename.
+		/// </summary>
 		public string OutputBasename { get; set; }
 
+		/// <summary>
+		/// Gets or sets output files.
+		/// </summary>
 		public List<OutputFile> OutputFiles { get; set; }
 
 		/// <summary>
@@ -38,8 +59,14 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public string PresetName { get; set; }
 
+		/// <summary>
+		/// Gets or sets the speech recognition.
+		/// </summary>
 		public SpeechRecognition SpeechRecognition { get; set; }
 
+		/// <summary>
+		/// Gets or sets the thumbnail.
+		/// </summary>
 		public string Thumbnail { get; set; }
 
 		/// <summary>
@@ -49,7 +76,7 @@ namespace AuphonicNet.Classes
 		#endregion
 
 		#region Internal Properties
-		public bool ResetData { get; set; }
+		internal bool ResetData { get; set; }
 		#endregion
 
 		#region Constructor

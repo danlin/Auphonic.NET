@@ -77,10 +77,16 @@ namespace AuphonicNet.Classes
 
 		public bool HasVideo { get; set; }
 
+		/// <summary>
+		/// Gets or sets the image.
+		/// </summary>
 		public string Image { get; set; }
 
 		public string InputFile { get; set; }
 
+		/// <summary>
+		/// Gets or sets a value that indicates whether the production is multitrack.
+		/// </summary>
 		public bool IsMultitrack { get; set; }
 
 		/// <summary>
@@ -95,14 +101,29 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public string LengthTimestring { get; internal set; }
 
+		/// <summary>
+		/// Gets or sets metadata.
+		/// </summary>
 		public Metadata Metadata { get; set; }
 
+		/// <summary>
+		/// Gets or sets multi input files.
+		/// </summary>
 		public List<MultiInputFile> MultiInputFiles { get; set; }
 
+		/// <summary>
+		/// Gets or sets outgoing services.
+		/// </summary>
 		public List<OutgoingService> OutgoingServices { get; set; }
 
+		/// <summary>
+		/// Gets or sets the output file basename.
+		/// </summary>
 		public string OutputBasename { get; set; }
 
+		/// <summary>
+		/// Gets or sets output files.
+		/// </summary>
 		public List<OutputFile> OutputFiles { get; set; }
 
 		/// <summary>
@@ -116,6 +137,9 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public string Service { get; set; }
 
+		/// <summary>
+		/// Gets or sets the speech recognition.
+		/// </summary>
 		public SpeechRecognition SpeechRecognition { get; set; }
 
 		public bool StartAllowed { get; set; }
@@ -140,6 +164,9 @@ namespace AuphonicNet.Classes
 		/// </summary>
 		public string StatusString { get; internal set; }
 
+		/// <summary>
+		/// Gets or sets the thumbnail.
+		/// </summary>
 		public string Thumbnail { get; set; }
 
 		public Credits UsedCredits { get; internal set; }
